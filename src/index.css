@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #ffffff;
+  color: #1e293b;
+}
+
+/* ==================== LIGHT THEME CONVERSION OVERRIDES ==================== */
+/* Dynamically maps dark design tokens to elegant white/slate tokens for high contrast */
+
+.bg-\[\#060708\],
+.min-h-screen.bg-\[\#060708\] {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+}
+
+/* Override #0e1114 card backgrounds to premium white with subtle shadow & light border */
+.bg-\[\#0e1114\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+.bg-slate-950:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+.bg-slate-900:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Convert dark borders to crisp slate/gray borders */
+.border-slate-900,
+.border-slate-800 {
+  border-color: #e2e8f0 !important;
+}
+
+/* ==================== TEXT COLOR DYNAMIC HANDLING ==================== */
+/* 1. Default headings and generic texts are styled for light background */
+body, h1, h2, h3, h4, .font-black, .font-display {
+  color: #0f172a;
+}
+
+.text-slate-400 {
+  color: #64748b !important;
+}
+
+.text-slate-500 {
+  color: #475569 !important;
+}
+
+/* 2. Map .text-white, .text-slate-100, .text-slate-200, .text-slate-300 to deep charcoal only when in lightened/white background areas */
+.bg-white .text-white,
+.bg-slate-50 .text-white,
+.bg-slate-100 .text-white,
+.bg-slate-200 .text-white,
+.bg-slate-100 .text-slate-100, .bg-slate-100 .text-slate-200, .bg-slate-100 .text-slate-300,
+.bg-slate-200 .text-slate-100, .bg-slate-200 .text-slate-200, .bg-slate-200 .text-slate-300,
+.bg-slate-50 .text-slate-100, .bg-slate-50 .text-slate-200, .bg-slate-50 .text-slate-300,
+.bg-white .text-slate-100, .bg-white .text-slate-200, .bg-white .text-slate-300,
+.bg-\[\#0e1114\] .text-white,
+.bg-\[\#0e1114\] .text-slate-100,
+.bg-\[\#0e1114\] .text-slate-200,
+.bg-\[\#0e1114\] .text-slate-300,
+.bg-slate-950:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-white,
+.bg-slate-950:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-slate-100,
+.bg-slate-950:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-slate-200,
+.bg-slate-950:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-slate-300,
+.bg-slate-900:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-white,
+.bg-slate-900:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-slate-100,
+.bg-slate-900:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-slate-200,
+.bg-slate-900:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-slate-300 {
+  color: #0f172a !important;
+}
+
+/* EXCEPTION: NEVER force text-white or light texts to dark if inside a button, an anchor button, elements styled with brand color backgrounds, or explicit dark containers/badges with alpha transparency */
+button.text-white,
+a.text-white,
+button .text-white,
+a .text-white,
+.bg-\[\#B71510\] *,
+.bg-\[\#F96302\] *,
+[class*="bg-slate-950/"].text-white,
+[class*="bg-slate-950/"] .text-white,
+[class*="bg-slate-950/"].text-slate-100,
+[class*="bg-slate-950/"] .text-slate-100,
+[class*="bg-slate-950/"].text-slate-200,
+[class*="bg-slate-950/"] .text-slate-200,
+[class*="bg-slate-950/"].text-slate-300,
+[class*="bg-slate-950/"] .text-slate-300,
+[class*="bg-slate-900/"].text-white,
+[class*="bg-slate-900/"] .text-white,
+[class*="bg-slate-850/"].text-white,
+[class*="bg-slate-850/"] .text-white,
+[class*="bg-slate-800/"].text-white,
+[class*="bg-slate-800/"] .text-white,
+[class*="bg-black/"].text-white,
+[class*="bg-black/"] .text-white {
+  color: #ffffff !important;
+}
+
+/* 3. Force white/light text for direct display elements in dark areas */
+#home-hero h1, #home-hero h2, #home-hero h3, #home-hero h4, #home-hero p, #home-hero span, #home-hero .text-slate-300,
+footer h1, footer h2, footer h3, footer h4, footer p, footer span, footer .text-slate-300, footer .text-slate-400,
+#global-quote-modal h1, #global-quote-modal h2, #global-quote-modal h3, #global-quote-modal p, #global-quote-modal span,
+#leads-portal-admin-overlay h1, #leads-portal-admin-overlay h2, #leads-portal-admin-overlay h3, #leads-portal-admin-overlay p, #leads-portal-admin-overlay span,
+#sheeting-materials-showcase h2,
+#sheeting-materials-showcase p:not(.bg-\[\#0e1114\] *),
+#sheeting-materials-showcase span:not(.bg-\[\#0e1114\] *):not(button *),
+#sheeting-materials-showcase strong:not(.bg-\[\#0e1114\] *) {
+  color: #ffffff !important;
+}
+
+#sheeting-materials-showcase p.text-slate-400:not(.bg-\[\#0e1114\] *) {
+  color: #cbd5e1 !important; /* Extremely high contrast light slate/white */
+}
+
+/* Ensure input text in dark input boxes remains crisp white */
+.bg-\[\#13171c\] {
+  background-color: #13171c !important;
+  color: #ffffff !important;
+}
+input.bg-\[\#13171c\],
+select.bg-\[\#13171c\],
+textarea.bg-\[\#13171c\] {
+  color: #ffffff !important;
+}
+.bg-\[\#13171c\] option {
+  background-color: #13171c !important;
+  color: #ffffff !important;
+}
+
+/* Standardize active trust banner */
+#trust-bar {
+  background-color: #f8fafc !important;
+  border-top-width: 1px !important;
+  border-bottom-width: 1px !important;
+  border-color: #e2e8f0 !important;
+}
+#trust-bar span {
+  color: #334155 !important;
+}
+
+/* ==================== PREMIUM NRS ACCENT CSS OVERRIDES ==================== */
+/* Ensures all red components render in the beautiful premium crimson brand theme (#B71510) */
+
+.text-\[\#B71510\] {
+  color: #B71510 !important;
+}
+.bg-\[\#B71510\] {
+  background-color: #B71510 !important;
+}
+.border-\[\#B71510\] {
+  border-color: #B71510 !important;
+}
+.hover\:text-\[\#B71510\]:hover {
+  color: #B71510 !important;
+}
+.hover\:bg-\[\#B71510\]:hover {
+  background-color: #B71510 !important;
+}
+.group:hover .group-hover\:text-\[\#B71510\] {
+  color: #B71510 !important;
+}
+.group:hover .group-hover\:bg-\[\#B71510\] {
+  background-color: #B71510 !important;
+}
+.focus\:border-\[\#B71510\]:focus {
+  border-color: #B71510 !important;
+}
+.focus\:ring-\[\#B71510\]:focus {
+  --tw-ring-color: #B71510 !important;
+}
+
+/* Hover active transition states */
+.hover\:bg-\[\#9c120d\]:hover {
+  background-color: #9c120d !important;
+}
+.bg-\[\#B71510\]\/10 {
+  background-color: rgba(183, 21, 16, 0.1) !important;
+}
+.bg-\[\#B71510\]\/20 {
+  background-color: rgba(183, 21, 16, 0.2) !important;
+}
+.border-\[\#B71510\]\/20 {
+  border-color: rgba(183, 21, 16, 0.2) !important;
+}
+.border-\[\#B71510\]\/40 {
+  border-color: rgba(183, 21, 16, 0.4) !important;
+}
+
+/* Map legacy high-contrast blue (#0938BC) and old orange (#E04F16) to the primary brand red to look beautiful */
+.text-\[\#0938BC\], .text-\[\#E04F16\] {
+  color: #B71510 !important;
+}
+.hover\:text-\[\#0938BC\]:hover, .hover\:text-\[\#E04F16\]:hover {
+  color: #9c120d !important;
+}
+.bg-\[\#E04F16\] {
+  background-color: #B71510 !important;
+}
+.hover\:bg-\[\#E04F16\]:hover {
+  background-color: #9c120d !important;
+}
+
+/* ==================== HIGH QUALITY TICKER SCROLL ANIMATION ==================== */
+@keyframes ticker-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 35s linear infinite;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
