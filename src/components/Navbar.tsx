@@ -54,10 +54,10 @@ export default function Navbar({ currentTab, onNavigate, onOpenQuote }: NavbarPr
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         isOpen 
-          ? 'bg-white py-4 border-b border-slate-100' 
+          ? 'bg-white/85 backdrop-blur-sm py-4 border-b border-slate-100' 
           : scrolled
-            ? 'bg-white/95 shadow-md backdrop-blur-md py-3 border-b border-slate-200'
-            : 'bg-white/90 backdrop-blur-sm py-4 border-b border-slate-100'
+            ? 'bg-white/80 shadow-md backdrop-blur-md py-3 border-b border-slate-200'
+            : 'bg-white/75 backdrop-blur-sm py-4 border-b border-slate-100'
       }`}
       id="main-app-header"
     >

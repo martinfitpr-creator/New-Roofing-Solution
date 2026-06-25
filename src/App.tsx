@@ -188,7 +188,7 @@ export default function App() {
                 <img
                   src="/images/hero-team.jpg"
                   alt="Premium Charcoal Roofing Solutions"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-[30%_center] sm:object-center"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-black/50"></div>
@@ -197,7 +197,7 @@ export default function App() {
               <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center space-y-8 z-10 w-full">
                 
                 {/* Main Heading & Subheading */}
-                <div className="flex flex-col items-center justify-center space-y-4 mb-10 sm:mb-16 -mt-16 sm:-mt-24 w-full px-4">
+                <div className="flex flex-col items-center justify-center space-y-4 mb-10 sm:mb-16 -mt-28 sm:-mt-24 w-full px-4">
                   <h1 
                     className="font-['Montserrat',sans-serif] font-extrabold text-[40px] sm:text-[72px] text-white uppercase text-center leading-[1.1]"
                     style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}
@@ -616,7 +616,7 @@ export default function App() {
                 </div>
 
                 <div className="max-w-2xl mx-auto space-y-6 relative z-10">
-                  <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
+                  <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight !text-white" style={{color: '#ffffff'}}>
                     Need Professional Roofing Services?
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto">

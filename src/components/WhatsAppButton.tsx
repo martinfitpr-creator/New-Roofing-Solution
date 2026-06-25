@@ -10,6 +10,7 @@ interface WhatsAppButtonProps {
 export default function WhatsAppButton({ contextMessage = '', onOpenQuoteModal }: WhatsAppButtonProps) {
   const [showChatBox, setShowChatBox] = useState(false);
   const [pulseNotification, setPulseNotification] = useState(true);
+  const [showStickyBar, setShowStickyBar] = useState(false);
 
   // Auto show a friendly notification pop after 4 seconds to grab attention
   useEffect(() => {
@@ -17,6 +18,25 @@ export default function WhatsAppButton({ contextMessage = '', onOpenQuoteModal }
       setShowChatBox(true);
     }, 4000);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Hide sticky bar while hero is visible; show it once scrolled past
+  useEffect(() => {
+    const hero = document.getElementById('home-hero');
+    if (!hero) {
+      // No hero on this page — always show the bar
+      setShowStickyBar(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Show bar only when hero is NOT intersecting (scrolled past)
+        setShowStickyBar(!entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
   }, []);
 
   const getWhatsAppLink = (messageText: string) => {
@@ -123,9 +143,11 @@ export default function WhatsAppButton({ contextMessage = '', onOpenQuoteModal }
         </button>
       </div>
 
-      {/* 2. Sticky Mobile Bottom Bar (Optimized Two-Button Layout) - Hidden on desktop */}
+      {/* 2. Sticky Mobile Bottom Bar (Optimized Two-Button Layout) - Hidden on desktop, hidden while hero is visible */}
       <div 
-        className="fixed bottom-0 left-0 right-0 z-50 flex border-t border-slate-900 bg-slate-950 p-2.5 shadow-2xl md:hidden items-center"
+        className={`fixed bottom-0 left-0 right-0 z-50 flex border-t border-slate-900 bg-slate-950 p-2.5 shadow-2xl md:hidden items-center transition-transform duration-300 ${
+          showStickyBar ? 'translate-y-0' : 'translate-y-full'
+        }`}
         id="sticky-mobile-toolbar"
       >
         <a

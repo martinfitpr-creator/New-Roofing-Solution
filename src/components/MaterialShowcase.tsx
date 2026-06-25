@@ -61,7 +61,7 @@ export default function MaterialShowcase() {
         
         {/* Core Profiles Section */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-[10px] font-extrabold uppercase tracking-widest text-black bg-slate-100 px-3.5 py-1.5 rounded-full inline-block">
+          <span className="text-[10px] font-extrabold uppercase tracking-widest !text-black bg-slate-100 px-3.5 py-1.5 rounded-full inline-block" style={{color: '#000000'}}>
             Premium Sheeting Profiles
           </span>
           <h2 className="text-3xl sm:text-4xl font-display font-black text-white uppercase tracking-tight">
