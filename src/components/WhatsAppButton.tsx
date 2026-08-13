@@ -58,18 +58,18 @@ export default function WhatsAppButton({ contextMessage = '', onOpenQuoteModal }
         {/* Expanded Interactive Chat Box Overlay */}
         {showChatBox && (
           <div 
-            className="w-80 rounded-2xl bg-[#0e1114] shadow-2xl border border-slate-800 overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300 flex flex-col"
+            className="w-80 rounded-2xl bg-white shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300 flex flex-col"
             id="whatsapp-chat-box"
           >
-            {/* Header section with brand colors */}
-            <div className="bg-slate-950 text-white p-4 flex items-center justify-between border-b border-slate-800 min-h-[72px]">
+            {/* Header section with clean white background and black text */}
+            <div className="bg-white text-slate-900 p-4 flex items-center justify-between border-b border-slate-200 min-h-[72px]">
               <div className="flex items-center gap-3">
                 <div className="relative h-10 w-10 rounded-full bg-white flex items-center justify-center border-2 border-[#B71510] overflow-hidden shrink-0">
                   <img src="/images/nrs-main-logo.png" alt="NRS" className="h-8 w-8 object-contain" />
-                  <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-[#F96302] border-2 border-slate-900 animate-pulse"></span>
+                  <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-[#F96302] border-2 border-white animate-pulse"></span>
                 </div>
                 <div className="flex flex-col justify-center">
-                  <h4 className="text-xs font-bold uppercase tracking-wide text-slate-100 leading-tight">New Solutions • Site Lead</h4>
+                  <h4 className="text-xs font-bold uppercase tracking-wide text-black leading-tight">New Solutions • Site Lead</h4>
                   <p className="text-[10px] text-[#F96302] font-mono flex items-center gap-1 mt-0.5">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#F96302] inline-block animate-pulse"></span>
                     Active & Ready to Assist
@@ -78,7 +78,7 @@ export default function WhatsAppButton({ contextMessage = '', onOpenQuoteModal }
               </div>
               <button 
                 onClick={handleClose}
-                className="text-slate-400 hover:text-white p-1 rounded-full hover:bg-slate-800 transition-colors"
+                className="text-slate-400 hover:text-slate-800 p-1 rounded-full hover:bg-slate-100 transition-colors"
                 title="Close chat bubble"
               >
                 <X className="h-4 w-4" />
@@ -86,17 +86,17 @@ export default function WhatsAppButton({ contextMessage = '', onOpenQuoteModal }
             </div>
 
             {/* Chat Body Bubble */}
-            <div className="p-4 bg-slate-950/45 space-y-3 border-b border-slate-800/50">
-              <div className="bg-[#13171c] rounded-xl rounded-tl-none p-3 text-xs text-slate-300 shadow-sm border border-slate-850 leading-relaxed">
-                Hi there! 👋 Welcome to <strong className="text-white">New Roofing Solutions</strong>.
+            <div className="p-4 bg-slate-50 space-y-3 border-b border-slate-200">
+              <div className="bg-white rounded-xl rounded-tl-none p-3 text-xs text-slate-700 shadow-sm border border-slate-200 leading-relaxed">
+                Hi there! 👋 Welcome to <strong className="text-slate-900">New Roofing Solutions</strong>.
                 <br /><br />
-                Need a quick quotation or site inspection for <strong className="text-white">Corrugated, IBR, or Coil</strong> sheet roofing? Let's get your pricing sorted now.
+                Need a quick quotation or site inspection for <strong className="text-slate-900">Corrugated, IBR, or Coil</strong> sheet roofing? Let's get your pricing sorted now.
               </div>
               <span className="text-[9px] font-mono text-slate-400 block text-right">Just now • SABS Certified</span>
             </div>
 
             {/* Action Buttons to Call or WhatsApp */}
-            <div className="p-4 bg-[#0e1114] space-y-2">
+            <div className="p-4 bg-white space-y-2">
               <a
                 href={getWhatsAppLink(contextMessage)}
                 target="_blank"
@@ -115,7 +115,7 @@ export default function WhatsAppButton({ contextMessage = '', onOpenQuoteModal }
                 className="w-full rounded-lg bg-[#B71510] text-white py-2.5 px-4 text-xs font-bold uppercase tracking-wider hover:bg-[#9c120d] transition-all flex items-center justify-center gap-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400"
                 id="widget-btn-call"
               >
-                <Phone className="h-4 w-4" />
+                <Phone className="h-4 w-4 text-white" />
                 Call Directly: {COMPANY_INFO.phoneDisplay}
               </a>
 
@@ -127,7 +127,7 @@ export default function WhatsAppButton({ contextMessage = '', onOpenQuoteModal }
           </div>
         )}
 
-        {/* Small Floating Green WhatsApp Quote Button (Toggles Chat Box) */}
+        {/* Floating Green WhatsApp Quote Button */}
         <button
           onClick={() => setShowChatBox(!showChatBox)}
           className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-all duration-300 hover:scale-110 hover:bg-[#20ba5a] focus:outline-none focus:ring-4 focus:ring-green-300 relative"

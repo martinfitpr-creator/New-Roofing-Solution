@@ -17,7 +17,6 @@ export default function QuoteForm({ preselectedService = '', onSuccess, compact 
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
-  const [isWhatsAppSubmitting, setIsWhatsAppSubmitting] = useState(false);
 
   // Handle standard online form submission
   const handleSubmit = (e: React.FormEvent) => {
@@ -126,15 +125,15 @@ _Sent from www.newroofingsolutions.co.za_`;
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-center justify-center text-center p-8 bg-slate-900/40 rounded-xl border border-slate-800" id="quote-success-state">
+      <div className="flex flex-col items-center justify-center text-center p-8 bg-slate-50 rounded-xl border border-slate-200" id="quote-success-state">
         <CheckCircle2 className="h-16 w-16 text-[#F96302] mb-4 animate-bounce" />
-        <h3 className="text-xl font-bold text-white mb-2">Thank You, {fullName}!</h3>
-        <p className="text-sm text-slate-400 mb-6 max-w-sm">
-          Your roofing enquiry has been logged successfully. Our specialist team will contact you back on <strong className="text-white">{phone}</strong> within 2 hours.
+        <h3 className="text-xl font-bold text-slate-900 mb-2">Thank You, {fullName}!</h3>
+        <p className="text-sm text-slate-600 mb-6 max-w-sm">
+          Your roofing enquiry has been logged successfully. Our specialist team will contact you back on <strong className="text-slate-900">{phone}</strong> within 2 hours.
         </p>
         <button
           onClick={handleReset}
-          className="rounded-lg bg-slate-800 px-4 py-2 text-xs font-semibold text-slate-300 hover:bg-slate-700 transition-colors"
+          className="rounded-lg bg-slate-850 hover:bg-[#B71510] text-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors shadow"
           id="btn-submit-another"
         >
           Submit Another Request
@@ -144,30 +143,29 @@ _Sent from www.newroofingsolutions.co.za_`;
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`${compact ? 'space-y-3 p-1' : 'space-y-4 p-6 bg-black rounded-xl shadow-md border border-slate-800'}`} id="roofing-quote-form">
+    <form onSubmit={handleSubmit} className={`${compact ? 'space-y-3 p-1' : 'space-y-4 p-6 bg-white rounded-xl shadow-md border border-slate-200'}`} id="roofing-quote-form">
       {!compact && (
-        <div className="border-b border-slate-900 pb-4 mb-4">
-          <h3 className="text-lg font-bold text-white flex items-center gap-2">
+        <div className="border-b border-slate-200 pb-4 mb-4">
+          <h3 className="text-lg font-black uppercase text-slate-900 flex items-center gap-2">
             <span className="w-2.5 h-6 bg-[#B71510] rounded-full inline-block"></span>
             Request a Free Quote
           </h3>
-          <div className="w-full rounded-xl overflow-hidden mt-3" style={{maxHeight: '340px'}}>
+          <div className="w-full rounded-xl overflow-hidden mt-3 border border-slate-100 shadow-sm" style={{maxHeight: '220px'}}>
             <img
-              src="/images/media__1782324325894.jpg"
-              alt="Premium Roofing Materials"
+              src="/images/work-nwu-building.jpg"
+              alt="Quality Roofing Projects"
               className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-              style={{maxHeight: '340px'}}
+              style={{maxHeight: '220px'}}
             />
           </div>
-          <p className="text-xs text-slate-400 mt-3">
+          <p className="text-xs text-slate-500 mt-3">
             Get professional advice & transparent South African pricing within hours.
           </p>
         </div>
       )}
 
       {error && (
-        <div className="flex items-center gap-2 rounded-lg bg-red-950/50 p-2.5 text-xs text-red-400 border border-red-900/50" id="form-error-banner">
+        <div className="flex items-center gap-2 rounded-lg bg-red-50 p-2.5 text-xs text-red-600 border border-red-200" id="form-error-banner">
           <AlertCircle className="h-4 w-4 shrink-0" />
           <span>{error}</span>
         </div>
@@ -175,27 +173,27 @@ _Sent from www.newroofingsolutions.co.za_`;
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="flex flex-col space-y-1">
-          <label className="text-[11px] font-bold text-slate-300">Full Name *</label>
+          <label className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Full Name *</label>
           <input
             type="text"
             required
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             placeholder="e.g. Sipho Ndlovu"
-            className={`rounded-lg bg-[#13171c] border border-slate-800 text-white px-3 text-sm focus:border-[#B71510] focus:ring-1 focus:ring-[#B71510] focus:outline-none ${compact ? 'py-1.5' : 'py-2'}`}
+            className={`rounded-lg bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 px-3 text-sm focus:bg-white focus:border-[#B71510] focus:ring-1 focus:ring-[#B71510] focus:outline-none transition-all ${compact ? 'py-1.5' : 'py-2'}`}
             id="quote-input-name"
           />
         </div>
 
         <div className="flex flex-col space-y-1">
-          <label className="text-[11px] font-bold text-slate-300">Phone Number *</label>
+          <label className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Phone Number *</label>
           <input
             type="tel"
             required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             placeholder="e.g. +27 68 087 6623"
-            className={`rounded-lg bg-[#13171c] border border-slate-800 text-white px-3 text-sm focus:border-[#B71510] focus:ring-1 focus:ring-[#B71510] focus:outline-none ${compact ? 'py-1.5' : 'py-2'}`}
+            className={`rounded-lg bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 px-3 text-sm focus:bg-white focus:border-[#B71510] focus:ring-1 focus:ring-[#B71510] focus:outline-none transition-all ${compact ? 'py-1.5' : 'py-2'}`}
             id="quote-input-phone"
           />
         </div>
@@ -203,28 +201,28 @@ _Sent from www.newroofingsolutions.co.za_`;
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="flex flex-col space-y-1">
-          <label className="text-[11px] font-bold text-slate-300">Email Address *</label>
+          <label className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Email Address *</label>
           <input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="e.g. sipho@example.co.za"
-            className={`rounded-lg bg-[#13171c] border border-slate-800 text-white px-3 text-sm focus:border-[#B71510] focus:ring-1 focus:ring-[#B71510] focus:outline-none ${compact ? 'py-1.5' : 'py-2'}`}
+            className={`rounded-lg bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 px-3 text-sm focus:bg-white focus:border-[#B71510] focus:ring-1 focus:ring-[#B71510] focus:outline-none transition-all ${compact ? 'py-1.5' : 'py-2'}`}
             id="quote-input-email"
           />
         </div>
 
         <div className="flex flex-col space-y-1">
-          <label className="text-[11px] font-bold text-slate-300">Service Required</label>
+          <label className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Service Required</label>
           <select
             value={service}
             onChange={(e) => setService(e.target.value)}
-            className={`rounded-lg bg-[#13171c] border border-slate-800 text-white px-3 text-sm focus:border-[#B71510] focus:ring-1 focus:ring-[#B71510] focus:outline-none cursor-pointer ${compact ? 'py-1.5' : 'py-2'}`}
+            className={`rounded-lg bg-slate-50 border border-slate-300 text-slate-900 px-3 text-sm focus:bg-white focus:border-[#B71510] focus:ring-1 focus:ring-[#B71510] focus:outline-none cursor-pointer transition-all ${compact ? 'py-1.5' : 'py-2'}`}
             id="quote-select-service"
           >
             {SERVICES.map((srv) => (
-              <option key={srv.slug} value={srv.title} className="bg-[#13171c] text-white">
+              <option key={srv.slug} value={srv.title} className="bg-white text-slate-900">
                 {srv.title}
               </option>
             ))}
@@ -233,14 +231,14 @@ _Sent from www.newroofingsolutions.co.za_`;
       </div>
 
       <div className="flex flex-col space-y-1">
-        <label className="text-[11px] font-bold text-slate-300">Tell us about your roofing requirements *</label>
+        <label className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Tell us about your roofing requirements *</label>
         <textarea
           required
           rows={compact ? 2 : 3}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="e.g. I have a leaking roof tile in the main lounge, or I need a new Chromadek installation for my warehouse..."
-          className="rounded-lg bg-[#13171c] border border-slate-800 text-white px-3 py-2 text-sm focus:border-[#B71510] focus:ring-1 focus:ring-[#B71510] focus:outline-none"
+          className="rounded-lg bg-slate-50 border border-slate-300 text-slate-900 placeholder:text-slate-400 px-3 py-2 text-sm focus:bg-white focus:border-[#B71510] focus:ring-1 focus:ring-[#B71510] focus:outline-none transition-all"
           id="quote-input-message"
         ></textarea>
       </div>
@@ -250,7 +248,7 @@ _Sent from www.newroofingsolutions.co.za_`;
         {/* Primary CTA Red button - Submit via email/online */}
         <button
           type="submit"
-          className={`flex-1 rounded-lg bg-[#B71510] text-center text-xs font-bold uppercase tracking-wider text-white shadow-md hover:bg-[#a1120d] active:scale-95 transition-all flex items-center justify-center gap-2 ${compact ? 'py-2.5 px-3' : 'py-3 px-4'}`}
+          className={`flex-1 rounded-lg bg-[#B71510] text-center text-xs font-bold uppercase tracking-wider text-white shadow-md hover:bg-[#9c120d] active:scale-95 transition-all flex items-center justify-center gap-2 ${compact ? 'py-2.5 px-3' : 'py-3 px-4'}`}
           id="btn-quote-submit-online"
         >
           <Send className="h-3.5 w-3.5" />

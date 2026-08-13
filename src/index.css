@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800;900&family=Montserrat:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -14,145 +14,18 @@ html {
 body {
   font-family: var(--font-sans);
   background-color: #ffffff;
-  color: #1e293b;
+  color: #0f172a;
 }
 
-/* ==================== LIGHT THEME CONVERSION OVERRIDES ==================== */
-/* Dynamically maps dark design tokens to elegant white/slate tokens for high contrast */
-
-.bg-\[\#060708\],
-.min-h-screen.bg-\[\#060708\] {
-  background-color: #ffffff !important;
-  color: #1e293b !important;
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
 }
 
-/* Override #0e1114 card backgrounds to premium white with subtle shadow & light border */
-.bg-\[\#0e1114\] {
-  background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  color: #1e293b !important;
-}
-
-.bg-slate-950:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) {
-  background-color: #f8fafc !important;
-  border-color: #e2e8f0 !important;
-}
-
-.bg-slate-900:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) {
-  background-color: #f1f5f9 !important;
-  border-color: #e2e8f0 !important;
-}
-
-/* Convert dark borders to crisp slate/gray borders */
-.border-slate-900,
-.border-slate-800 {
-  border-color: #e2e8f0 !important;
-}
-
-/* ==================== TEXT COLOR DYNAMIC HANDLING ==================== */
-/* 1. Default body styling */
-body {
-  color: #1e293b;
-}
-
-/* 2. Map .text-white, .text-slate-100, .text-slate-200, .text-slate-300 to deep charcoal ONLY when inside light background cards */
-.bg-white .text-white,
-.bg-slate-50 .text-white,
-.bg-slate-100 .text-white,
-.bg-slate-200 .text-white,
-.bg-slate-100 .text-slate-100, .bg-slate-100 .text-slate-200, .bg-slate-100 .text-slate-300,
-.bg-slate-200 .text-slate-100, .bg-slate-200 .text-slate-200, .bg-slate-200 .text-slate-300,
-.bg-slate-50 .text-slate-100, .bg-slate-50 .text-slate-200, .bg-slate-50 .text-slate-300,
-.bg-white .text-slate-100, .bg-white .text-slate-200, .bg-white .text-slate-300 {
-  color: #0f172a !important;
-}
-
-/* 3. EXPLICIT HIGH CONTRAST FOR ALL DARK SECTIONS & FOOTER */
-footer,
-#main-app-footer,
-#home-hero,
-#global-quote-modal,
-#mobile-drawer-menu,
-#whatsapp-chat-box,
-#sticky-mobile-toolbar {
-  color: #f8fafc !important;
-}
-
-footer h1, footer h2, footer h3, footer h4, footer strong, footer .font-black, footer .font-bold,
-#main-app-footer h1, #main-app-footer h2, #main-app-footer h3, #main-app-footer h4, #main-app-footer strong, #main-app-footer .font-black, #main-app-footer .font-bold,
-#home-hero h1, #home-hero h2, #home-hero h3, #home-hero h4, #home-hero strong,
-#global-quote-modal h1, #global-quote-modal h2, #global-quote-modal h3, #global-quote-modal h4, #global-quote-modal strong,
-#mobile-drawer-menu h1, #mobile-drawer-menu h2, #mobile-drawer-menu h3, #mobile-drawer-menu h4 {
-  color: #ffffff !important;
-}
-
-footer p, footer span, footer a, footer button, footer li, footer div,
-#main-app-footer p, #main-app-footer span, #main-app-footer a, #main-app-footer button, #main-app-footer li, #main-app-footer div,
-#home-hero p, #home-hero span, #home-hero a, #home-hero div,
-#global-quote-modal p, #global-quote-modal span, #global-quote-modal label {
-  color: #cbd5e1 !important;
-}
-
-footer .text-slate-300, #main-app-footer .text-slate-300 {
-  color: #cbd5e1 !important;
-}
-
-footer .text-slate-400, #main-app-footer .text-slate-400 {
-  color: #94a3b8 !important;
-}
-
-footer .text-slate-500, #main-app-footer .text-slate-500 {
-  color: #64748b !important;
-}
-
-footer .text-white, #main-app-footer .text-white {
-  color: #ffffff !important;
-}
-
-footer a:hover, footer button:hover,
-#main-app-footer a:hover, #main-app-footer button:hover {
-  color: #B71510 !important;
-}
-
-/* EXCEPTION: NEVER force text-white or light texts to dark if inside a button or brand element */
-button.text-white,
-a.text-white,
-button .text-white,
-a .text-white,
-.bg-\[\#B71510\] *,
-.bg-\[\#F96302\] *,
-.bg-\[\#25D366\] * {
-  color: #ffffff !important;
-}
-
-/* Ensure input text in dark input boxes remains crisp white */
-.bg-\[\#13171c\] {
-  background-color: #13171c !important;
-  color: #ffffff !important;
-}
-input.bg-\[\#13171c\],
-select.bg-\[\#13171c\],
-textarea.bg-\[\#13171c\] {
-  color: #ffffff !important;
-}
-.bg-\[\#13171c\] option {
-  background-color: #13171c !important;
-  color: #ffffff !important;
-}
-
-/* Standardize active trust banner */
-#trust-bar {
-  background-color: #f8fafc !important;
-  border-top-width: 1px !important;
-  border-bottom-width: 1px !important;
-  border-color: #e2e8f0 !important;
-}
-#trust-bar span {
-  color: #334155 !important;
-}
-
-/* ==================== PREMIUM NRS ACCENT CSS OVERRIDES ==================== */
-/* Ensures all red components render in the beautiful premium crimson brand theme (#B71510) */
+/* ==================== EXACT BRAND COLOR SYSTEM ==================== */
+/* Primary: #B71510 */
+/* Secondary: #0F172A */
+/* Accent: #F96302 */
+/* Background: #FFFFFF */
 
 .text-\[\#B71510\] {
   color: #B71510 !important;
@@ -182,8 +55,22 @@ textarea.bg-\[\#13171c\] {
   --tw-ring-color: #B71510 !important;
 }
 
+/* Accent: #F96302 */
+.text-\[\#F96302\] {
+  color: #F96302 !important;
+}
+.bg-\[\#F96302\] {
+  background-color: #F96302 !important;
+}
+.border-\[\#F96302\] {
+  border-color: #F96302 !important;
+}
+.hover\:bg-\[\#d85402\]:hover {
+  background-color: #d85402 !important;
+}
+
 /* Hover active transition states */
-.hover\:bg-\[\#9c120d\]:hover {
+.hover\:bg-\[\#9c120d\]:hover, .hover\:bg-\[\#a1120d\]:hover {
   background-color: #9c120d !important;
 }
 .bg-\[\#B71510\]\/10 {
@@ -199,7 +86,7 @@ textarea.bg-\[\#13171c\] {
   border-color: rgba(183, 21, 16, 0.4) !important;
 }
 
-/* Map legacy high-contrast blue (#0938BC) and old orange (#E04F16) to the primary brand red to look beautiful */
+/* Map legacy classes */
 .text-\[\#0938BC\], .text-\[\#E04F16\] {
   color: #B71510 !important;
 }
@@ -213,7 +100,22 @@ textarea.bg-\[\#13171c\] {
   background-color: #9c120d !important;
 }
 
-/* ==================== HIGH QUALITY TICKER SCROLL ANIMATION ==================== */
+/* Global Light Theme Surface Overrides */
+.bg-\[\#060708\] {
+  background-color: #ffffff !important;
+}
+.bg-\[\#0e1114\] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Footer uses deep secondary charcoal #0F172A */
+footer, #footer-main {
+  background-color: #0F172A !important;
+  color: #ffffff !important;
+}
+
+/* Ticker Scroll Animation */
 @keyframes ticker-scroll {
   0% {
     transform: translate3d(0, 0, 0);
