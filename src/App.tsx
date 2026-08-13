@@ -202,7 +202,7 @@ export default function App() {
                     className="font-['Montserrat',sans-serif] font-extrabold text-[40px] sm:text-[72px] text-white uppercase text-center leading-[1.1]"
                     style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}
                   >
-                    Your Roof.<br className="sm:hidden" /> Done Right.
+                    Your Roof<br className="sm:hidden" /> Done Right
                   </h1>
                   <p className="font-['Inter',sans-serif] font-normal text-[16px] sm:text-[20px] text-white opacity-90 text-center max-w-2xl">
                     Residential & commercial roofing across Gauteng
@@ -213,7 +213,7 @@ export default function App() {
                 <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xs sm:max-w-xl justify-center pt-2 px-4" id="hero-cta-buttons">
                   <button
                     onClick={() => openQuoteWithService('')}
-                    className="w-full sm:w-auto bg-[#F96302] hover:bg-[#d85402] text-white px-10 py-4.5 text-xs font-black uppercase tracking-[0.2em] rounded shadow-2xl hover:shadow-[#F96302]/25 hover:scale-105 active:scale-95 transition-all duration-300 text-center"
+                    className="w-full sm:w-auto bg-[#F96302] hover:bg-[#d85402] text-white px-10 py-4.5 text-xs font-black uppercase tracking-[0.2em] rounded shadow-2xl hover:shadow-[#F96302]/25 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center text-center whitespace-nowrap"
                     id="hero-btn-quote"
                   >
                     Get a Free Quote
@@ -230,67 +230,16 @@ export default function App() {
 
                 {/* Small spaced uppercase trust credentials matching R & D Perez footer line */}
                 <p className="text-[10px] sm:text-xs text-slate-300 leading-relaxed max-w-xl mx-auto uppercase tracking-[0.25em] font-extrabold pt-2">
-                  SABS APPROVED MATERIALS • 5-YEAR WORKMANSHIP GUARANTEE • LICENSED & INSURED
+                  SABS APPROVED MATERIALS • 5-YEAR WORKMANSHIP GUARANTEE
                 </p>
 
               </div>
 
             </section>
-
 
 
             {/* CORE SHEETING MATERIALS SHOWCASE (Corrugated, IBR, Coil) */}
             <MaterialShowcase />
-
-            {/* OUR WORK SECTION */}
-            <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10 py-20" id="our-work-section">
-              <div className="text-center max-w-2xl mx-auto space-y-3">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#B71510]">Latest Projects</span>
-                <h2 className="text-3xl font-black text-white uppercase tracking-tight">Our Work</h2>
-                <p className="text-xs sm:text-sm text-slate-400">
-                  Watch our team in action. Click to view our recent roofing projects on Facebook.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[
-                  { link: "https://www.facebook.com/reel/2107503786866752", title: "Project 1" },
-                  { link: "https://www.facebook.com/reel/1638883697168061", title: "Project 2" },
-                  { link: "https://www.facebook.com/reel/1562278371863446", title: "Project 3" },
-                  { link: "https://www.facebook.com/profile.php?id=61572867532674", title: "Project 4" }
-                ].map((item, i) => (
-                  <a 
-                    key={i} 
-                    href={item.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group relative block aspect-video bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-md hover:shadow-xl hover:border-slate-500 transition-all duration-300"
-                  >
-                    {/* Placeholder Background (dark grey to fit theme) */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900 group-hover:bg-slate-800 transition-colors">
-                      {/* Play Button Overlay */}
-                      <div className="bg-black/50 text-white rounded-full p-4 border-2 border-white/20 group-hover:bg-[#B71510] group-hover:border-[#B71510] group-hover:scale-110 transition-all duration-300 backdrop-blur-sm shadow-lg">
-                        <Play className="h-8 w-8 fill-current translate-x-0.5" />
-                      </div>
-                      <span className="mt-4 text-xs font-bold text-slate-400 group-hover:text-white transition-colors uppercase tracking-widest">
-                        Watch on Facebook
-                      </span>
-                    </div>
-                  </a>
-                ))}
-              </div>
-
-              <div className="text-center pt-6">
-                <a
-                  href="https://www.facebook.com/profile.php?id=61572867532674"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block rounded-lg bg-slate-100 border border-slate-200 text-black text-xs font-bold uppercase tracking-wider px-8 py-4 hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition-all shadow-md hover:shadow-[#1877F2]/25 hover:-translate-y-0.5"
-                >
-                  See More on Facebook
-                </a>
-              </div>
-            </section>
 
 
 
@@ -393,7 +342,7 @@ export default function App() {
                     </h2>
                     
                     <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                      NRS (New Roofing Solutions) offers residential and commercial roofing services including new roof installations, roof repairs, waterproofing, gutters, and thatching. Based in Gauteng, South Africa. Licensed, insured, SABS approved materials, 5-year workmanship guarantee.
+                      NRS (New Roofing Solutions) offers residential and commercial roofing services including new roof installations, roof repairs, waterproofing, gutters, and thatching. Based in Gauteng, South Africa. SABS approved materials, 5-year workmanship guarantee.
                     </p>
 
                     <div className="pt-2">
@@ -410,6 +359,142 @@ export default function App() {
                 </div>
               </div>
             </motion.section>
+
+            {/* OUR WORK SECTION — ABOVE WHY CHOOSE US */}
+            <section className="bg-[#060708] py-20" id="our-work-section">
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
+
+                {/* Heading */}
+                <div className="text-center max-w-2xl mx-auto space-y-3">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#B71510]">Portfolio</span>
+                  <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight">Our Work</h2>
+                  <p className="text-sm text-slate-400 leading-relaxed">
+                    Real projects. Real results. A showcase of roofing excellence across residential, commercial &amp; industrial properties.
+                  </p>
+                </div>
+
+                {/* Image Gallery — Hero + Grid */}
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:grid-rows-2">
+
+                  {/* Large featured image — spans 2 rows */}
+                  <div className="lg:col-span-2 lg:row-span-2 group relative rounded-2xl overflow-hidden shadow-2xl" style={{minHeight: '420px'}}>
+                    <img
+                      src="/images/work-nwu-building.jpg"
+                      alt="Large commercial roofing project"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      style={{minHeight: '420px'}}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                    <div className="absolute bottom-5 left-5">
+                      <span className="inline-block bg-[#B71510] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-2">Commercial</span>
+                      <p className="text-white font-bold text-sm">Large-Scale Commercial Roofing</p>
+                    </div>
+                  </div>
+
+                  {/* Top-right small */}
+                  <div className="group relative rounded-2xl overflow-hidden shadow-xl" style={{minHeight: '200px'}}>
+                    <img
+                      src="/images/work-red-corrugated.jpg"
+                      alt="Red corrugated roof installation"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      style={{minHeight: '200px'}}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-3 left-3">
+                      <span className="inline-block bg-[#B71510] text-white text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full">Residential</span>
+                    </div>
+                  </div>
+
+                  {/* Bottom-right small */}
+                  <div className="group relative rounded-2xl overflow-hidden shadow-xl" style={{minHeight: '200px'}}>
+                    <img
+                      src="/images/work-grey-aerial.jpg"
+                      alt="Aerial view grey metal roof"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      style={{minHeight: '200px'}}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-3 left-3">
+                      <span className="inline-block bg-slate-700 text-white text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full">Residential</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Secondary row of 4 smaller images */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {[
+                    { src: '/images/work-white-corrugated.jpg', label: 'Corrugated Sheeting' },
+                    { src: '/images/work-warehouse.jpg', label: 'Industrial' },
+                    { src: '/images/work-ud-trucks.jpg', label: 'Commercial' },
+                    { src: '/images/work-industrial.jpg', label: 'Industrial' },
+                  ].map((item, i) => (
+                    <div key={i} className="group relative rounded-xl overflow-hidden shadow-lg" style={{height: '180px'}}>
+                      <img
+                        src={item.src}
+                        alt={item.label}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                      <span className="absolute bottom-2 left-2 text-[10px] font-bold text-white uppercase tracking-wider">{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* See More CTA */}
+                <div className="flex flex-wrap items-center justify-center gap-4">
+                  <a
+                    href="https://www.facebook.com/profile.php?id=61572867532674"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[#1877F2] text-white text-xs font-bold uppercase tracking-wider px-8 py-4 hover:bg-[#0e5fc0] transition-all shadow-lg hover:shadow-[#1877F2]/30 hover:-translate-y-0.5"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    See More on Facebook
+                  </a>
+                  <a
+                    href={COMPANY_INFO.tiktokUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[#010101] text-white text-xs font-bold uppercase tracking-wider px-8 py-4 hover:bg-[#333] transition-all shadow-lg hover:-translate-y-0.5 border border-slate-600"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+                    See More on TikTok
+                  </a>
+                </div>
+
+                {/* Trusted By — Client Logos (real images, no labels) */}
+                <div className="border-t border-slate-800 pt-10 space-y-6">
+                  <p className="text-center text-xs font-bold uppercase tracking-widest text-slate-500">Trusted By</p>
+                  <div className="flex flex-wrap items-center justify-center gap-10 md:gap-20">
+                    {/* NWU */}
+                    <div className="group hover:scale-110 transition-transform duration-300">
+                      <img
+                        src="/images/logo-nwu.png"
+                        alt="NWU - North-West University"
+                        className="h-16 w-auto object-contain filter drop-shadow-lg"
+                      />
+                    </div>
+                    {/* Boitumelo */}
+                    <div className="group hover:scale-110 transition-transform duration-300">
+                      <img
+                        src="/images/logo-boitumelo.png"
+                        alt="Boitumelo"
+                        className="h-16 w-auto object-contain filter drop-shadow-lg"
+                      />
+                    </div>
+                    {/* UD Trucks */}
+                    <div className="group hover:scale-110 transition-transform duration-300">
+                      <img
+                        src="/images/logo-ud-trucks.png"
+                        alt="UD Trucks"
+                        className="h-14 w-auto object-contain filter drop-shadow-lg"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
 
             {/* WHY CHOOSE US (Bento Grid of Value Propositions) */}
             <motion.section 
@@ -493,94 +578,80 @@ export default function App() {
               </div>
             </motion.section>
 
-            {/* PROJECTS PREVIEW GALLERY HEADER & SLIDER */}
-            <motion.section 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5 }}
-              className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10 py-20" 
-              id="home-projects-preview"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-900 pb-6">
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#B71510]">Case Studies</span>
-                  <h2 className="text-3xl font-black text-white uppercase tracking-tight mt-1">Our Featured Projects</h2>
-                  <p className="text-xs sm:text-sm text-slate-400 mt-1">
-                    See how our engineering and waterproofing crews deliver absolute precision in the field.
-                  </p>
-                </div>
-                <button
-                  onClick={() => navigateTo('projects')}
-                  className="rounded bg-slate-900 border border-slate-800 px-4 py-2.5 text-xs font-bold uppercase text-white hover:bg-[#B71510] transition-colors tracking-wider"
-                >
-                  View All Project Galleries →
-                </button>
-              </div>
 
-              {/* Embed ProjectGallery for instant user pleasure */}
-              <ProjectGallery />
-            </motion.section>
 
             {/* ROTATING TESTIMONIALS SLIDER */}
-            <motion.section 
+            <motion.section
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5 }}
-              className="bg-slate-900 text-white py-20 overflow-hidden" 
+              className="bg-[#0e1114] py-20 overflow-hidden"
               id="testimonials"
             >
-              <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-10">
+              <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 space-y-12">
                 <div className="text-center space-y-2">
-                  <span className="text-xs font-bold uppercase tracking-widest text-slate-400">TESTIMONIALS</span>
-                  <h2 className="text-2xl font-black uppercase tracking-tight text-white">Client Satisfaction Guarantees</h2>
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#B71510]">Testimonials</span>
+                  <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">What Our Clients Say</h2>
+                  <p className="text-sm text-slate-400 max-w-lg mx-auto">Trusted by homeowners and businesses across South Africa</p>
                 </div>
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-                  
-                  <div className="bg-slate-800 p-6 rounded-xl border border-slate-700/60 relative flex flex-col justify-between">
+
+                  <div className="bg-white rounded-2xl p-8 shadow-2xl flex flex-col justify-between relative group hover:-translate-y-1 transition-transform duration-300">
+                    <span className="absolute top-5 right-6 text-6xl text-[#B71510] font-serif leading-none opacity-20 select-none">"</span>
                     <div>
-                      <div className="flex text-amber-400 mb-3">
-                        <Star className="h-4 w-4 fill-current" /><Star className="h-4 w-4 fill-current" /><Star className="h-4 w-4 fill-current" /><Star className="h-4 w-4 fill-current" /><Star className="h-4 w-4 fill-current" />
+                      <div className="flex text-amber-400 mb-4">
+                        {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
                       </div>
-                      <p className="text-xs text-white italic leading-relaxed mb-4">
+                      <p className="text-slate-800 text-sm leading-relaxed mb-6">
                         "Professional from start to finish. The workmanship on our townhouse roof replacement was excellent, and the team delivered exactly what was promised under budget."
                       </p>
                     </div>
-                    <div className="text-left">
-                      <strong className="text-xs block text-white">Adriaan du Plessis</strong>
-                      <span className="text-[10px] text-slate-400">Sandton, Johannesburg</span>
+                    <div className="flex items-center gap-3 border-t border-slate-100 pt-4">
+                      <div className="h-10 w-10 rounded-full bg-[#B71510] flex items-center justify-center text-white font-black text-sm shrink-0">A</div>
+                      <div>
+                        <strong className="text-sm block text-slate-900">Adriaan du Plessis</strong>
+                        <span className="text-xs text-slate-500">Sandton, Johannesburg</span>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="bg-slate-800 p-6 rounded-xl border border-slate-700/60 relative flex flex-col justify-between">
+                  <div className="bg-white rounded-2xl p-8 shadow-2xl flex flex-col justify-between relative group hover:-translate-y-1 transition-transform duration-300">
+                    <span className="absolute top-5 right-6 text-6xl text-[#B71510] font-serif leading-none opacity-20 select-none">"</span>
                     <div>
-                      <div className="flex text-amber-400 mb-3">
-                        <Star className="h-4 w-4 fill-current" /><Star className="h-4 w-4 fill-current" /><Star className="h-4 w-4 fill-current" /><Star className="h-4 w-4 fill-current" /><Star className="h-4 w-4 fill-current" />
+                      <div className="flex text-amber-400 mb-4">
+                        {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
                       </div>
-                      <p className="text-xs text-white italic leading-relaxed mb-4">
+                      <p className="text-slate-800 text-sm leading-relaxed mb-6">
                         "Reliable, responsive, and great quality work. They came out on short notice during a heavy storm to patch a serious leak and followed up to make it permanent."
                       </p>
                     </div>
-                    <div className="text-left">
-                      <strong className="text-xs block text-white">Lerato Mofokeng</strong>
-                      <span className="text-[10px] text-slate-400">Pretoria East</span>
+                    <div className="flex items-center gap-3 border-t border-slate-100 pt-4">
+                      <div className="h-10 w-10 rounded-full bg-[#B71510] flex items-center justify-center text-white font-black text-sm shrink-0">L</div>
+                      <div>
+                        <strong className="text-sm block text-slate-900">Lerato Mofokeng</strong>
+                        <span className="text-xs text-slate-500">Pretoria East</span>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="bg-slate-800 p-6 rounded-xl border border-slate-700/60 relative flex flex-col justify-between">
+                  <div className="bg-white rounded-2xl p-8 shadow-2xl flex flex-col justify-between relative group hover:-translate-y-1 transition-transform duration-300">
+                    <span className="absolute top-5 right-6 text-6xl text-[#B71510] font-serif leading-none opacity-20 select-none">"</span>
                     <div>
-                      <div className="flex text-amber-400 mb-3">
-                        <Star className="h-4 w-4 fill-current" /><Star className="h-4 w-4 fill-current" /><Star className="h-4 w-4 fill-current" /><Star className="h-4 w-4 fill-current" /><Star className="h-4 w-4 fill-current" />
+                      <div className="flex text-amber-400 mb-4">
+                        {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
                       </div>
-                      <p className="text-xs text-white italic leading-relaxed mb-4">
+                      <p className="text-slate-800 text-sm leading-relaxed mb-6">
                         "Our new Chromadek roof looks fantastic and the entire process was stress-free. Very clean crew, SANS certified trusses. Five stars!"
                       </p>
                     </div>
-                    <div className="text-left">
-                      <strong className="text-xs block text-white">Devon Smith</strong>
-                      <span className="text-[10px] text-slate-400">Durbanville, Cape Town</span>
+                    <div className="flex items-center gap-3 border-t border-slate-100 pt-4">
+                      <div className="h-10 w-10 rounded-full bg-[#B71510] flex items-center justify-center text-white font-black text-sm shrink-0">D</div>
+                      <div>
+                        <strong className="text-sm block text-slate-900">Devon Smith</strong>
+                        <span className="text-xs text-slate-500">Waterfall Estate, Midrand</span>
+                      </div>
                     </div>
                   </div>
 
@@ -615,7 +686,7 @@ export default function App() {
                   <div className="flex flex-wrap justify-center gap-4 pt-2">
                     <button
                       onClick={() => openQuoteWithService('')}
-                      className="rounded-lg bg-[#F96302] hover:bg-[#d85402] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg hover:shadow-[#F96302]/25 hover:scale-105 active:scale-95 transition-all duration-300"
+                      className="rounded-lg bg-[#F96302] hover:bg-[#d85402] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg hover:shadow-[#F96302]/25 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center text-center whitespace-nowrap"
                     >
                       Get a Free Quote
                     </button>
@@ -645,21 +716,18 @@ export default function App() {
               <p className="text-xs sm:text-sm text-slate-400 mt-1">Building better roofs, protecting what matters most throughout South Africa.</p>
             </div>
 
-            {/* Our Story Grid */}
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center">
-              <div className="space-y-4">
-                <h3 className="text-lg font-bold text-white uppercase tracking-wide flex items-center gap-2">
+            {/* Introduction Grid */}
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 items-center">
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-slate-900 uppercase tracking-wide flex items-center gap-2">
                   <span className="h-6 w-1.5 bg-[#B71510] rounded-full"></span>
-                  Our Story
+                  Introduction
                 </h3>
-                <p className="font-['Inter',sans-serif] font-normal text-[16px] leading-[1.7] text-[#333333]">
-                  Established with a commitment to elevate construction and engineering practices in South Africa, New Roofing Solution has grown from a local residential repair team into a recognized structural roofing enterprise.
-                </p>
-                <p className="font-['Inter',sans-serif] font-normal text-[16px] leading-[1.7] text-[#333333]">
-                  We observed that South African property owners were frequently plagued by recurring roof leaks, sub-standard timber installations, and short-lived waterproofing coats. We dedicated our business to utilizing superior quality SABS elements, hiring certified structural woodwrights, and guaranteeing our labor with solid warranties.
+                <p className="font-['Inter',sans-serif] font-normal text-[16px] leading-[1.8] text-slate-800">
+                  New Roofing Solutions is a metal roofing and decking manufacturer that is <strong>100% black owned</strong>. We supply all types of roof sheets and deliver nationwide. Escorted by excellent quality, favourable price and good reputation, we are your choice.
                 </p>
               </div>
-              <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-100 relative group h-full max-h-[400px]">
+              <div className="rounded-2xl overflow-hidden shadow-xl border border-slate-200 relative group" style={{height: '320px'}}>
                 <img
                   src="/images/media__1782324675986.jpg"
                   alt="Roofing Installation Process"
@@ -669,37 +737,56 @@ export default function App() {
               </div>
             </div>
 
-            {/* Our Mission, Values, and Quality Policy (Three Column Cards) */}
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              
-              <div className="rounded-xl bg-[#0e1114] p-6 border border-slate-900 space-y-3">
-                <div className="h-10 w-10 rounded-lg bg-slate-900 flex items-center justify-center text-[#B71510]">
-                  <Award className="h-5 w-5" />
+            {/* Vision & Mission Statement */}
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+
+              {/* Vision */}
+              <div className="rounded-xl bg-[#0e1114] border border-slate-800 p-8 space-y-5">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-lg bg-[#B71510]/10 flex items-center justify-center text-[#B71510]">
+                    <Award className="h-5 w-5" />
+                  </div>
+                  <h4 className="font-sans font-black text-white text-base uppercase tracking-wide">01 Vision</h4>
                 </div>
-                <h4 className="font-sans font-bold text-slate-100 text-sm uppercase">Our Mission</h4>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  To secure residential complexes, business parks, and massive industrial warehouse footprints with durable, high-performance roof coatings, installations, and waterproofing structures that safeguard physical investments.
-                </p>
+                <ul className="space-y-3">
+                  {[
+                    "To be Africa's most preferred roof sheet manufacturer",
+                    "To produce a wide range of steel products",
+                    "Produce innovative steel",
+                    "Protecting our environment by constantly seeking manufacturing processes that are eco friendly",
+                    "Involve with community",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-sm text-slate-300 leading-relaxed">
+                      <span className="mt-1.5 h-2 w-2 rounded-full bg-[#B71510] shrink-0"></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <div className="rounded-xl bg-[#0e1114] p-6 border border-slate-900 space-y-3">
-                <div className="h-10 w-10 rounded-lg bg-slate-900 flex items-center justify-center text-[#B71510]">
-                  <Shield className="h-5 w-5" />
+              {/* Mission Statement */}
+              <div className="rounded-xl bg-[#0e1114] border border-[#B71510]/30 p-8 space-y-5 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#B71510]/5 rounded-bl-full pointer-events-none"></div>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-lg bg-[#B71510] flex items-center justify-center text-white">
+                    <Shield className="h-5 w-5" />
+                  </div>
+                  <h4 className="font-sans font-black text-white text-base uppercase tracking-wide">02 Mission Statement</h4>
                 </div>
-                <h4 className="font-sans font-bold text-slate-100 text-sm uppercase">Our Values</h4>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  A commitment to absolute SANS code compliance, professional accountability, rapid leak containment, honest structural reviews, and the utilization of environmentally sustainable insulation systems.
-                </p>
-              </div>
-
-              <div className="rounded-xl bg-[#0e1114] p-6 border border-slate-900 space-y-3">
-                <div className="h-10 w-10 rounded-lg bg-[#F96302]/10 flex items-center justify-center text-[#F96302]">
-                  <CheckCircle2 className="h-5 w-5" />
-                </div>
-                <h4 className="font-sans font-bold text-slate-100 text-sm uppercase">Our Commitment to Quality</h4>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  We enforce rigid Quality Inspections upon every completed phase. No project is finalized until flashing is waterproof-tested and our strict structural compliance standards are met.
-                </p>
+                <ul className="space-y-3">
+                  {[
+                    "We aim to achieve our vision by:",
+                    "Being an impartial employer as well as a career and skills developer",
+                    "To constantly ensure we are reliable to our customers",
+                    "To constantly increase our agility in production without compromising the quality of our products",
+                    "To contribute to society by providing jobs, mentorship programmes and be intentional about our CSI projects",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-sm text-slate-300 leading-relaxed">
+                      <span className="mt-1.5 h-2 w-2 rounded-full bg-[#B71510] shrink-0"></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
             </div>
@@ -814,7 +901,7 @@ export default function App() {
                   href={`${COMPANY_INFO.whatsappUrl}?text=${encodeURIComponent(`Hi New Roofing Solution, I need a quote for ${selectedService.title}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-lg bg-[#F96302] hover:bg-[#d85402] hover:scale-105 active:scale-95 text-white px-4 py-2.5 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all duration-300"
+                  className="rounded-lg bg-[#F96302] hover:bg-[#d85402] hover:scale-105 active:scale-95 text-white px-4 py-2.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center text-center whitespace-nowrap gap-1.5 transition-all duration-300"
                 >
                   <MessageSquare className="h-3.5 w-3.5" />
                   Get a Quote
@@ -896,17 +983,6 @@ export default function App() {
                   
                   <QuoteForm preselectedService={selectedService.title} />
 
-                  {/* SEO Keyword Context Indicator (for Google Search optimization transparent display) */}
-                  <div className="rounded-xl bg-slate-900 text-white p-5 border border-slate-800 space-y-2">
-                    <div className="flex items-center gap-1.5 text-[#B71510] text-[10px] font-mono font-bold uppercase tracking-wider">
-                      <AlertTriangle className="h-3.5 w-3.5" />
-                      SEO Meta Optimization context
-                    </div>
-                    <span className="text-[10px] text-slate-400 font-mono block">Target Keywords for Google Indexing:</span>
-                    <p className="text-[11px] font-mono text-slate-300 italic bg-slate-950 p-2.5 rounded leading-relaxed border border-slate-800">
-                      {selectedService.seoKeywords}
-                    </p>
-                  </div>
 
                 </div>
 
@@ -918,23 +994,7 @@ export default function App() {
         )}
 
 
-        {/* ==================== 5. VIEW: PROJECTS GALLERY PAGE ==================== */}
-        {currentTab === 'projects' && (
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-8" id="projects-view">
-            
-            <div className="border-b border-slate-900 pb-6 text-center max-w-2xl mx-auto space-y-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#B71510]">PROOF OF EXCELLENCE</span>
-              <h1 className="text-3xl sm:text-4xl font-black text-white uppercase">Our Roofing Projects Across South Africa</h1>
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                Showcasing completed residential townhouses, commercial parks, flat slabs waterproofing, and heavy industrial warehouse sheet installations. Toggle Before & After states to inspect workmanship.
-              </p>
-            </div>
 
-            {/* Embedded custom filterable gallery component */}
-            <ProjectGallery />
-
-          </div>
-        )}
 
 
         {/* ==================== 6. VIEW: SERVICE AREAS PAGE ==================== */}
@@ -963,7 +1023,7 @@ export default function App() {
               </div>
               <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-400">
                 <span className="font-semibold text-slate-400">Quick Filters:</span>
-                {['Sandton', 'Pretoria', 'Cape Town', 'Durban', 'Gauteng'].map((tag) => (
+                {['Sandton', 'Pretoria', 'Midrand', 'Durban', 'Gauteng'].map((tag) => (
                   <button
                     key={tag}
                     onClick={() => setAreaSearch(tag)}
@@ -1017,7 +1077,7 @@ export default function App() {
             <div className="rounded-xl bg-[#0e1114] p-6 text-center border border-slate-900 space-y-4 max-w-2xl mx-auto">
               <h4 className="text-xs font-bold text-slate-200 uppercase tracking-widest">SANS Code Compliant Logistics</h4>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Whether you have a severe leak in Johannesburg, a flat roof waterproofing request in Durban, or wind-damaged sheets in Cape Town, our logistics crews are fully equipped to deliver prompt materials dispatch and structural engineering sign-offs locally.
+                Whether you have a severe leak in Johannesburg, a flat roof waterproofing request in Midrand, or wind-damaged sheets in Pretoria, our logistics crews are fully equipped to deliver prompt materials dispatch and structural engineering sign-offs locally.
               </p>
             </div>
 
@@ -1125,7 +1185,7 @@ export default function App() {
                     href={`${COMPANY_INFO.whatsappUrl}?text=${encodeURIComponent(`Hi New Roofing Solutions, I read your article "${selectedBlog.title}" and would like to request a free quote.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-lg bg-[#F96302] hover:bg-[#d85402] hover:scale-105 hover:shadow-lg text-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider shadow flex items-center justify-center gap-1.5 transition-all duration-300"
+                    className="rounded-lg bg-[#F96302] hover:bg-[#d85402] hover:scale-105 hover:shadow-lg text-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider shadow flex items-center justify-center text-center whitespace-nowrap gap-1.5 transition-all duration-300"
                   >
                     GET A FREE QUOTE
                   </a>
@@ -1258,7 +1318,7 @@ export default function App() {
                         <span className="text-[10px] uppercase font-bold text-slate-400">Official Website</span>
                         <strong className="text-xs block text-slate-200 mt-1">{COMPANY_INFO.website}</strong>
                         <p className="text-[11px] text-slate-400 leading-normal mt-1">
-                          Our portal is secure, SEO-optimized, and configured for rapid dispatch routing to Johannesburg, Pretoria, Cape Town, and Durban.
+                          Our portal is secure, SEO-optimized, and configured for rapid dispatch routing to Johannesburg, Pretoria, Midrand, and Durban.
                         </p>
                       </div>
                     </div>
@@ -1277,17 +1337,6 @@ export default function App() {
                     </div>
 
                   </div>
-                </div>
-
-                {/* SABS compliance trust board */}
-                <div className="rounded-xl bg-slate-950 text-white p-6 border border-slate-900 space-y-3">
-                  <h4 className="text-xs font-bold text-slate-100 uppercase flex items-center gap-1.5">
-                    <CheckCircle2 className="h-4 w-4 text-[#B71510]" />
-                    Guaranteed Protection Policies
-                  </h4>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Every new installation completed by New Roofing Solution carries a minimum 5-year structural warranty, while our torch-on concrete slab waterproofing structures carry formal material certificates to guarantee zero leaks.
-                  </p>
                 </div>
 
               </div>
@@ -1327,7 +1376,6 @@ export default function App() {
               <ul className="space-y-2 text-xs text-slate-300">
                 <li><button onClick={() => navigateTo('home')} className="hover:text-[#B71510] transition-colors">Home Page</button></li>
                 <li><button onClick={() => navigateTo('about')} className="hover:text-[#B71510] transition-colors">About Our Team</button></li>
-                <li><button onClick={() => navigateTo('projects')} className="hover:text-[#B71510] transition-colors">Projects Gallery</button></li>
                 <li><button onClick={() => navigateTo('service-areas')} className="hover:text-[#B71510] transition-colors">Our Service Areas</button></li>
                 <li><button onClick={() => navigateTo('faqs')} className="hover:text-[#B71510] transition-colors">Frequently Asked Questions</button></li>
                 <li><button onClick={() => navigateTo('blog')} className="hover:text-[#B71510] transition-colors">Our Blog Articles</button></li>

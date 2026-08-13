@@ -1,20 +1,27 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# New Roofing Solutions
 
-# Run and deploy your AI Studio app
+Official web platform for **New Roofing Solutions** — South Africa's premier supplier of SABS-certified roofing sheets, IBR profiles, corrugated metal, waterproofing, and structural roof repair services.
 
-This contains everything you need to run your app locally.
+## Technology Stack
 
-View your app in AI Studio: https://ai.studio/apps/4a1c1b86-e0b3-4819-9820-2f0297251f04
+- **Framework**: React 19 + TypeScript
+- **Styling**: TailwindCSS
+- **Bundler**: Vite 6
+- **Icons**: Lucide React
 
-## Run Locally
-
-**Prerequisites:**  Node.js
-
+## Development Setup
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   ```bash
+   npm install
+   ```
+
+2. Start local development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Build for production:
+   ```bash
+   npm run build
+   ```

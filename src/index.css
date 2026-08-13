@@ -50,20 +50,12 @@ body {
 }
 
 /* ==================== TEXT COLOR DYNAMIC HANDLING ==================== */
-/* 1. Default headings and generic texts are styled for light background */
-body, h1, h2, h3, h4, .font-black, .font-display {
-  color: #0f172a;
+/* 1. Default body styling */
+body {
+  color: #1e293b;
 }
 
-.text-slate-400 {
-  color: #64748b !important;
-}
-
-.text-slate-500 {
-  color: #475569 !important;
-}
-
-/* 2. Map .text-white, .text-slate-100, .text-slate-200, .text-slate-300 to deep charcoal only when in lightened/white background areas */
+/* 2. Map .text-white, .text-slate-100, .text-slate-200, .text-slate-300 to deep charcoal ONLY when inside light background cards */
 .bg-white .text-white,
 .bg-slate-50 .text-white,
 .bg-slate-100 .text-white,
@@ -71,62 +63,66 @@ body, h1, h2, h3, h4, .font-black, .font-display {
 .bg-slate-100 .text-slate-100, .bg-slate-100 .text-slate-200, .bg-slate-100 .text-slate-300,
 .bg-slate-200 .text-slate-100, .bg-slate-200 .text-slate-200, .bg-slate-200 .text-slate-300,
 .bg-slate-50 .text-slate-100, .bg-slate-50 .text-slate-200, .bg-slate-50 .text-slate-300,
-.bg-white .text-slate-100, .bg-white .text-slate-200, .bg-white .text-slate-300,
-.bg-\[\#0e1114\] .text-white,
-.bg-\[\#0e1114\] .text-slate-100,
-.bg-\[\#0e1114\] .text-slate-200,
-.bg-\[\#0e1114\] .text-slate-300,
-.bg-slate-950:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-white,
-.bg-slate-950:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-slate-100,
-.bg-slate-950:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-slate-200,
-.bg-slate-950:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-slate-300,
-.bg-slate-900:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-white,
-.bg-slate-900:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-slate-100,
-.bg-slate-900:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-slate-200,
-.bg-slate-900:not(footer):not(header):not(#home-hero):not(#leads-portal-admin-overlay *):not(#global-quote-modal *) .text-slate-300 {
+.bg-white .text-slate-100, .bg-white .text-slate-200, .bg-white .text-slate-300 {
   color: #0f172a !important;
 }
 
-/* EXCEPTION: NEVER force text-white or light texts to dark if inside a button, an anchor button, elements styled with brand color backgrounds, or explicit dark containers/badges with alpha transparency */
+/* 3. EXPLICIT HIGH CONTRAST FOR ALL DARK SECTIONS & FOOTER */
+footer,
+#main-app-footer,
+#home-hero,
+#global-quote-modal,
+#mobile-drawer-menu,
+#whatsapp-chat-box,
+#sticky-mobile-toolbar {
+  color: #f8fafc !important;
+}
+
+footer h1, footer h2, footer h3, footer h4, footer strong, footer .font-black, footer .font-bold,
+#main-app-footer h1, #main-app-footer h2, #main-app-footer h3, #main-app-footer h4, #main-app-footer strong, #main-app-footer .font-black, #main-app-footer .font-bold,
+#home-hero h1, #home-hero h2, #home-hero h3, #home-hero h4, #home-hero strong,
+#global-quote-modal h1, #global-quote-modal h2, #global-quote-modal h3, #global-quote-modal h4, #global-quote-modal strong,
+#mobile-drawer-menu h1, #mobile-drawer-menu h2, #mobile-drawer-menu h3, #mobile-drawer-menu h4 {
+  color: #ffffff !important;
+}
+
+footer p, footer span, footer a, footer button, footer li, footer div,
+#main-app-footer p, #main-app-footer span, #main-app-footer a, #main-app-footer button, #main-app-footer li, #main-app-footer div,
+#home-hero p, #home-hero span, #home-hero a, #home-hero div,
+#global-quote-modal p, #global-quote-modal span, #global-quote-modal label {
+  color: #cbd5e1 !important;
+}
+
+footer .text-slate-300, #main-app-footer .text-slate-300 {
+  color: #cbd5e1 !important;
+}
+
+footer .text-slate-400, #main-app-footer .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+footer .text-slate-500, #main-app-footer .text-slate-500 {
+  color: #64748b !important;
+}
+
+footer .text-white, #main-app-footer .text-white {
+  color: #ffffff !important;
+}
+
+footer a:hover, footer button:hover,
+#main-app-footer a:hover, #main-app-footer button:hover {
+  color: #B71510 !important;
+}
+
+/* EXCEPTION: NEVER force text-white or light texts to dark if inside a button or brand element */
 button.text-white,
 a.text-white,
 button .text-white,
 a .text-white,
 .bg-\[\#B71510\] *,
 .bg-\[\#F96302\] *,
-[class*="bg-slate-950/"].text-white,
-[class*="bg-slate-950/"] .text-white,
-[class*="bg-slate-950/"].text-slate-100,
-[class*="bg-slate-950/"] .text-slate-100,
-[class*="bg-slate-950/"].text-slate-200,
-[class*="bg-slate-950/"] .text-slate-200,
-[class*="bg-slate-950/"].text-slate-300,
-[class*="bg-slate-950/"] .text-slate-300,
-[class*="bg-slate-900/"].text-white,
-[class*="bg-slate-900/"] .text-white,
-[class*="bg-slate-850/"].text-white,
-[class*="bg-slate-850/"] .text-white,
-[class*="bg-slate-800/"].text-white,
-[class*="bg-slate-800/"] .text-white,
-[class*="bg-black/"].text-white,
-[class*="bg-black/"] .text-white {
+.bg-\[\#25D366\] * {
   color: #ffffff !important;
-}
-
-/* 3. Force white/light text for direct display elements in dark areas */
-#home-hero h1, #home-hero h2, #home-hero h3, #home-hero h4, #home-hero p, #home-hero span, #home-hero .text-slate-300,
-footer h1, footer h2, footer h3, footer h4, footer p, footer span, footer .text-slate-300, footer .text-slate-400,
-#global-quote-modal h1, #global-quote-modal h2, #global-quote-modal h3, #global-quote-modal p, #global-quote-modal span,
-#leads-portal-admin-overlay h1, #leads-portal-admin-overlay h2, #leads-portal-admin-overlay h3, #leads-portal-admin-overlay p, #leads-portal-admin-overlay span,
-#sheeting-materials-showcase h2,
-#sheeting-materials-showcase p:not(.bg-\[\#0e1114\] *),
-#sheeting-materials-showcase span:not(.bg-\[\#0e1114\] *):not(button *),
-#sheeting-materials-showcase strong:not(.bg-\[\#0e1114\] *) {
-  color: #ffffff !important;
-}
-
-#sheeting-materials-showcase p.text-slate-400:not(.bg-\[\#0e1114\] *) {
-  color: #cbd5e1 !important; /* Extremely high contrast light slate/white */
 }
 
 /* Ensure input text in dark input boxes remains crisp white */

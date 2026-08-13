@@ -154,15 +154,7 @@ export default function Navbar({ currentTab, onNavigate, onOpenQuote }: NavbarPr
 
           {/* RIGHT COLUMN: Laptop Links & CTAs (Hidden on mobile) */}
           <nav className="hidden md:flex flex-1 items-center justify-start space-x-8 pl-8" id="navbar-right-links">
-            <button
-              onClick={() => handleLinkClick('projects')}
-              className={`text-[11px] font-bold uppercase tracking-[0.15em] transition-colors hover:text-[#B71510] ${
-                isActive('projects') ? 'text-[#B71510]' : 'text-slate-800'
-              }`}
-              id="nav-link-projects"
-            >
-              Gallery
-            </button>
+
             <button
               onClick={() => handleLinkClick('contact')}
               className={`text-[11px] font-bold uppercase tracking-[0.15em] transition-colors hover:text-[#B71510] ${
@@ -185,13 +177,35 @@ export default function Navbar({ currentTab, onNavigate, onOpenQuote }: NavbarPr
 
             {/* Facebook Link */}
             <a
-              href="https://www.facebook.com/profile.php?id=61572867532674"
+              href={COMPANY_INFO.facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-slate-700 hover:text-[#B71510] transition-colors pl-2"
+              className="flex items-center justify-center w-9 h-9 rounded-full bg-[#1877F2] hover:bg-[#0e5fc0] transition-all duration-200 shadow-md hover:scale-110 active:scale-95"
               title="Visit our Facebook Page"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#B71510]"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+
+            {/* TikTok Link */}
+            <a
+              href={COMPANY_INFO.tiktokUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-9 h-9 rounded-full bg-[#010101] hover:bg-[#333] transition-all duration-200 shadow-md hover:scale-110 active:scale-95 border border-slate-300"
+              title="Visit our TikTok Page"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"></path></svg>
+            </a>
+
+            {/* LinkedIn Link */}
+            <a
+              href={COMPANY_INFO.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-9 h-9 rounded-full bg-[#0A66C2] hover:bg-[#084e96] transition-all duration-200 shadow-md hover:scale-110 active:scale-95"
+              title="Visit our LinkedIn Page"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
 
             {/* Quick Action Quote button - Simple brand orange quote button, still leads to WhatsApp */}
@@ -199,7 +213,7 @@ export default function Navbar({ currentTab, onNavigate, onOpenQuote }: NavbarPr
               href={`${COMPANY_INFO.whatsappUrl}?text=${encodeURIComponent('Hi New Roofing Solutions, I would like to request a free quote for roofing services.')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded bg-[#F96302] text-white px-5 py-2.5 text-[11px] font-extrabold uppercase tracking-[0.15em] shadow-md hover:bg-[#d85402] hover:scale-105 hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center gap-1.5"
+              className="rounded bg-[#F96302] text-white px-5 py-2.5 text-[11px] font-extrabold uppercase tracking-[0.15em] shadow-md hover:bg-[#d85402] hover:scale-105 hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center text-center whitespace-nowrap gap-1.5"
               id="nav-btn-quote"
             >
               GET A FREE QUOTE
@@ -262,14 +276,7 @@ export default function Navbar({ currentTab, onNavigate, onOpenQuote }: NavbarPr
             >
               SERVICES
             </button>
-            <button
-              onClick={() => handleLinkClick('projects')}
-              className={`text-left text-2xl sm:text-3xl font-black uppercase tracking-wider transition-colors ${
-                isActive('projects') ? 'text-[#B71510]' : 'text-white hover:text-[#B71510]'
-              }`}
-            >
-              GALLERY
-            </button>
+
             <button
               onClick={() => handleLinkClick('contact')}
               className={`text-left text-2xl sm:text-3xl font-black uppercase tracking-wider transition-colors ${
@@ -286,13 +293,31 @@ export default function Navbar({ currentTab, onNavigate, onOpenQuote }: NavbarPr
               CALL
             </a>
             <a
-              href="https://www.facebook.com/profile.php?id=61572867532674"
+              href={COMPANY_INFO.facebookUrl}
               onClick={() => setIsOpen(false)}
               className="text-left text-2xl sm:text-3xl font-black uppercase tracking-wider text-white hover:text-[#B71510]"
               target="_blank"
               rel="noopener noreferrer"
             >
               FACEBOOK
+            </a>
+            <a
+              href={COMPANY_INFO.tiktokUrl}
+              onClick={() => setIsOpen(false)}
+              className="text-left text-2xl sm:text-3xl font-black uppercase tracking-wider text-white hover:text-[#B71510]"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              TIKTOK
+            </a>
+            <a
+              href={COMPANY_INFO.linkedinUrl}
+              onClick={() => setIsOpen(false)}
+              className="text-left text-2xl sm:text-3xl font-black uppercase tracking-wider text-white hover:text-[#B71510]"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LINKEDIN
             </a>
             <a
               href={`${COMPANY_INFO.whatsappUrl}?text=${encodeURIComponent('Hi New Roofing Solutions, I would like to request a free quote for roofing services.')}`}

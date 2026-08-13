@@ -15,6 +15,9 @@ export const COMPANY_INFO = {
   landlineAlternative2Display: '011 314 4396',
   website: 'www.newroofingsolutions.co.za',
   whatsappUrl: 'https://wa.me/27680876623',
+  facebookUrl: 'https://www.facebook.com/profile.php?id=61572867532674',
+  tiktokUrl: 'https://www.tiktok.com/@newroofingsolutions?is_from_webapp=1&sender_device=pc',
+  linkedinUrl: 'https://www.linkedin.com/in/new-roofing-solutions-17b5243b4/?isSelfProfile=false',
   address: '78c Olifantsfontein Road, Glen Austin AH, Midrand',
   deliveryText: 'We Deliver Nationwide',
 };
@@ -38,7 +41,7 @@ export const PROMO_PRODUCTS: PromoProduct[] = [
     profile: 'Chromodek',
     thickness: '0.53mm',
     price: 'R128.00',
-    priceDetail: 'per meter (Includes VAT)',
+    priceDetail: 'per meter (Excl. VAT)',
     tag: 'Promo Special',
     features: [
       'Durable & long lasting protection',
@@ -47,7 +50,7 @@ export const PROMO_PRODUCTS: PromoProduct[] = [
       'High-strength structural steel'
     ],
     specs: [
-      { name: 'Profile Type', val: 'Inverted Box Rib / Corrugated' },
+      { name: 'Profile Type', val: 'IBR / Corrugated' },
       { name: 'Thickness', val: '0.53mm' },
       { name: 'Origin', val: 'Direct from Manufacturer' },
       { name: 'Delivery', val: 'Nationwide' }
@@ -59,7 +62,7 @@ export const PROMO_PRODUCTS: PromoProduct[] = [
     profile: 'IBR',
     thickness: '0.40mm',
     price: 'R64.00',
-    priceDetail: 'per meter (Excluding VAT)',
+    priceDetail: 'per meter (Excl. VAT)',
     tag: 'Unbeatable Value',
     features: [
       'High quality steel sheets',
@@ -70,7 +73,7 @@ export const PROMO_PRODUCTS: PromoProduct[] = [
     specs: [
       { name: 'Profile Options', val: 'IBR / Corrugated' },
       { name: 'Thickness', val: '0.40mm' },
-      { name: 'Tax status', val: 'Excluding VAT' }
+      { name: 'Tax status', val: 'Excl. VAT' }
     ]
   },
   {
@@ -79,7 +82,7 @@ export const PROMO_PRODUCTS: PromoProduct[] = [
     profile: 'IBR',
     thickness: '0.30mm',
     price: 'R50.75',
-    priceDetail: 'per meter (Excluding VAT)',
+    priceDetail: 'per meter (Excl. VAT)',
     tag: 'Best Seller',
     features: [
       'Amazing cost-effective durability',
@@ -90,7 +93,7 @@ export const PROMO_PRODUCTS: PromoProduct[] = [
     specs: [
       { name: 'Profile Options', val: 'IBR / Corrugated' },
       { name: 'Thickness', val: '0.30mm' },
-      { name: 'Tax status', val: 'Excluding VAT' }
+      { name: 'Tax status', val: 'Excl. VAT' }
     ]
   },
   {
@@ -99,7 +102,7 @@ export const PROMO_PRODUCTS: PromoProduct[] = [
     profile: 'Corrugated',
     thickness: '0.27mm',
     price: 'R47.50',
-    priceDetail: 'per meter (Excluding VAT)',
+    priceDetail: 'per meter (Excl. VAT)',
     tag: 'Budget Friendly',
     features: [
       'Wave profile galvanized sheeting',
@@ -114,32 +117,12 @@ export const PROMO_PRODUCTS: PromoProduct[] = [
     ]
   },
   {
-    id: 'promo-bulk-hardware',
-    title: 'Bulk Corrugated Galvanised Sheeting',
-    profile: 'Corrugated',
-    thickness: '0.18mm | 0.23mm',
-    price: 'Special Bulk Rates',
-    priceDetail: 'Contact for exclusive warehouse prices',
-    tag: 'For Hardware Stores',
-    features: [
-      'Specially designed for hardware store bulk orders',
-      'Strong & durable to withstand tough conditions',
-      'Rust & corrosion resistant galvanization',
-      'Reliable, prompt nationwide supply line'
-    ],
-    specs: [
-      { name: 'Available thicknesses', val: '0.18mm and 0.23mm' },
-      { name: 'Target Buyers', val: 'Hardware stores & retail outlets' },
-      { name: 'Bulk Order Lead Time', val: 'Order early to stay prepared!' }
-    ]
-  },
-  {
     id: 'promo-roofing-nails',
     title: 'Premium NRS Roofing Nails / Wire Nails',
     profile: 'Accessories',
     thickness: '2-inch, 3-inch & 4-inch',
     price: 'R25.00',
-    priceDetail: 'per pack (Includes VAT)',
+    priceDetail: 'per pack (Excl. VAT)',
     tag: 'Essential Accessory',
     features: [
       'Available sizes: 2-inch, 3-inch & 4-inch',
@@ -149,8 +132,7 @@ export const PROMO_PRODUCTS: PromoProduct[] = [
     ],
     specs: [
       { name: 'Nail Sizes', val: "2-Inch, 3-Inch, 4-Inch" },
-      { name: 'Price status', val: 'R25 Includes VAT' },
-      { name: 'Compatibility', val: 'Fits IBR & Corrugated sheets perfectly' }
+      { name: 'Price status', val: 'R25 (Excl. VAT)' }
     ]
   }
 ];
@@ -332,31 +314,7 @@ export const SERVICES: ServiceDetail[] = [
     seoKeywords: 'Roof Inspections South Africa | Roof Certification of Compliance | Property Pre-purchase Roof Check | Certified Roof Inspector',
     imageAlt: 'Roof Inspections South Africa',
   },
-  {
-    slug: 'roof-painting-coatings',
-    title: 'Premium Roof Painting & Coatings',
-    shortDesc: 'Aesthetic restoration and thermal-reflective protective coatings.',
-    description: 'South Africa\'s harsh UV rays bleach, crack, and erode roof tiles and metal sheeting. Our professional roof painting and specialized thermal coatings seal your roof, prevent rust, and reduce indoor temperatures during hot summer months.',
-    iconName: 'Paintbrush',
-    benefits: [
-      'Pristine, brand-new appearance with premium weather-resistant colors',
-      'Thermal reflective coatings can reduce indoor temperature by up to 8°C, lowering AC costs',
-      'Prevents rust development on galvanized steel and metal roofing sheets',
-      'Restores the non-porous finish of concrete tiles, stopping water absorption',
-    ],
-    process: [
-      { step: '01', title: 'Fungal Wash & High Pressure Wash', desc: 'We clean the tiles or sheets down to bare material, treating moss and algae with specialized anti-fungal solutions.' },
-      { step: '02', title: 'Primer Coat Application', desc: 'We apply high-bonding primers. Rust-inhibitive primers are used on metal, and binding primers on tiles.' },
-      { step: '03', title: 'Double Topcoat Acrylic Spraying', desc: 'We apply two coats of premium roofing acrylic paint using professional airless sprayers for an ultra-smooth, thick finish.' },
-      { step: '04', title: 'Edge Detailing & Clean', desc: 'All ridges, gutters, and trim are painted by hand for perfect visual precision. We clean up all overspray.' },
-    ],
-    faqs: [
-      { q: 'What brand of roofing paint do you use?', a: 'We use premium, heavy-duty UV-resistant coatings from leading South African brands like Prominent, Dulux, or Plascon, specifically formulated for roofs.' },
-      { q: 'Does roof paint wash off or peel?', a: 'No, because we do meticulous high-pressure priming first. Our painting jobs carry a multi-year warranty against cracking, peeling, and excessive fading.' },
-    ],
-    seoKeywords: 'Roof Painting South Africa | Roof Acrylic Coatings | Rust Proof Metal Roof Painting | Heat Reflective Roof Coatings',
-    imageAlt: 'Roof Painting and Coatings South Africa',
-  },
+
   {
     slug: 'gutter-installation-repairs',
     title: 'Gutter Installation & Repairs',
@@ -382,31 +340,7 @@ export const SERVICES: ServiceDetail[] = [
     seoKeywords: 'Gutter Installation South Africa | Gutter Repairs | Seamless Aluminum Gutters | Rainwater Drainage Solutions',
     imageAlt: 'Seamless Gutter Installation South Africa',
   },
-  {
-    slug: 'roof-cleaning',
-    title: 'Professional Roof Cleaning',
-    shortDesc: 'High-pressure restoration of tiles, metal sheets, and concrete roofs.',
-    description: 'Algae, moss, lichen, and soot not only ruin your roof\'s appearance, but they also trap moisture, accelerate tile erosion, and cause rust on metal sheeting. Our professional high-pressure washing restores your roof to its original appearance.',
-    iconName: 'Droplet',
-    benefits: [
-      'Instant aesthetic boost, making an old roof look brand new at a fraction of painting cost',
-      'Removes organic lichen roots that slowly eat into concrete tiles and cause micro-cracks',
-      'Keeps rainwater tanks cleaner by removing bird droppings and industrial pollution from the surface',
-      'Improves heat reflection by removing dark, heat-absorbing dirt and soot',
-    ],
-    process: [
-      { step: '01', title: 'Safety Rigging & Pre-treatment', desc: 'Our technicians rig harness lines and apply eco-friendly biodegradeable detergent to loosen thick moss and lichen.' },
-      { step: '02', title: 'Industrial High-Pressure Wash', desc: 'We wash the roof using specialized rotating nozzles adjusted to the exact safe pressure for your material to avoid damage.' },
-      { step: '03', title: 'Anti-Fungal Treatment', desc: 'We spray an advanced anti-fungal barrier coat that keeps spores, algae, and black mould from growing back for up to 24 months.' },
-      { step: '04', title: 'Debris Removal & Clear-up', desc: 'We flush all gutters and wash down your home\'s exterior walls and pathways of any rinsed roofing debris.' },
-    ],
-    faqs: [
-      { q: 'Will high-pressure washing damage my older roof tiles?', a: 'Not when done by professionals. We inspect structural integrity first, adjust our water pressure safely, and spray down-slope so no water gets forced under tiles.' },
-      { q: 'How long does a roof cleaning service take?', a: 'Usually just 1 day for standard residential homes, restoring its visual brilliance immediately.' },
-    ],
-    seoKeywords: 'Roof Cleaning South Africa | High Pressure Roof Washing | Remove Moss Algae Roof | Roof Tile Restoration',
-    imageAlt: 'Roof Cleaning South Africa',
-  },
+
   {
     slug: 'residential-roofing',
     title: 'Residential Roofing Services',
@@ -636,7 +570,7 @@ export const SERVICE_AREAS = [
   { city: 'East Rand', region: 'Gauteng', details: 'Factories, warehouse roofs, and homes in Benoni, Boksburg, and Kempton Park.' },
   { city: 'West Rand', region: 'Gauteng', details: 'Krugersdorp, Roodepoort, and Randfontein roofing projects.' },
   { city: 'Durban', region: 'KwaZulu-Natal', details: 'Coastal corrosion protection, seamless gutter installs, and flat balcony waterproofing.' },
-  { city: 'Cape Town', region: 'Western Cape', details: 'High-wind resistance roofing systems, heavy winter storm waterproofing, and roof inspections.' },
+  { city: 'Waterfall & Kyalami', region: 'Midrand, Gauteng', details: 'High-end residential estate re-roofing, commercial parks waterproofing, and rapid dispatch roofing supplies.' },
   { city: 'Bloemfontein', region: 'Free State', details: 'Large agricultural sheds IBR roofing and central residential roofing.' },
   { city: 'Port Elizabeth', region: 'Eastern Cape', details: 'Coastal weatherproofing, metal roof painting, and general roof maintenance.' }
 ];

@@ -72,18 +72,21 @@ export default function QuoteForm({ preselectedService = '', onSuccess, compact 
     }
 
     // Format professional WhatsApp markdown message
-    const waMessage = 
-`*NEW ROOFING SOLUTION - QUOTE REQUEST*
-=================================
-*Client Name:* ${fullName}
-*Phone Number:* ${phone}
-*Email:* ${email || 'Not Provided'}
-*Service Required:* ${service}
----------------------------------
-*Message:* 
+    const waMessage =
+`👋 *NEW QUOTE REQUEST – New Roofing Solutions*
+
+*👤 Client Details*
+• Name: ${fullName}
+• Phone: ${phone}
+• Email: ${email || 'Not provided'}
+
+*🔧 Service Required*
+• ${service}
+
+*📝 Message*
 ${message || 'I would like to request a free site inspection and roofing quotation.'}
-=================================
-_Submitted via www.newroofingsolution.co.za_`;
+
+_Sent from www.newroofingsolutions.co.za_`;
 
     const whatsappUrl = `${COMPANY_INFO.whatsappUrl}?text=${encodeURIComponent(waMessage)}`;
     
@@ -148,7 +151,16 @@ _Submitted via www.newroofingsolution.co.za_`;
             <span className="w-2.5 h-6 bg-[#B71510] rounded-full inline-block"></span>
             Request a Free Quote
           </h3>
-          <p className="text-xs text-slate-400 mt-1">
+          <div className="w-full rounded-xl overflow-hidden mt-3" style={{maxHeight: '340px'}}>
+            <img
+              src="/images/media__1782324325894.jpg"
+              alt="Premium Roofing Materials"
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+              style={{maxHeight: '340px'}}
+            />
+          </div>
+          <p className="text-xs text-slate-400 mt-3">
             Get professional advice & transparent South African pricing within hours.
           </p>
         </div>
@@ -245,14 +257,14 @@ _Submitted via www.newroofingsolution.co.za_`;
           Send Online Enquiry
         </button>
 
-        {/* Secondary CTA White button with Orange border - Instant WhatsApp request */}
+        {/* Secondary CTA Green button - Instant WhatsApp request */}
         <button
           type="button"
           onClick={handleWhatsAppSubmit}
-          className={`flex-1 rounded-lg bg-slate-900 border border-slate-800 text-center text-xs font-bold uppercase tracking-wider text-[#F96302] hover:bg-slate-800 active:scale-95 transition-all flex items-center justify-center gap-2 ${compact ? 'py-2.5 px-3' : 'py-3 px-4'}`}
+          className={`flex-1 rounded-lg bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-md text-center text-xs font-bold uppercase tracking-wider active:scale-95 transition-all flex items-center justify-center gap-2 whitespace-nowrap ${compact ? 'py-2.5 px-3' : 'py-3 px-4'}`}
           id="btn-quote-submit-whatsapp"
         >
-          <MessageSquare className="h-3.5 w-3.5 text-[#F96302]" />
+          <MessageSquare className="h-3.5 w-3.5 text-white" />
           Instant WhatsApp
         </button>
       </div>

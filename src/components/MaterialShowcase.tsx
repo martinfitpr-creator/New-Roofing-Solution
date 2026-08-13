@@ -18,26 +18,26 @@ export default function MaterialShowcase() {
       icon: <Layers className="h-8 w-8 text-[#B71510]" />,
       desc: 'The traditional round-wave profile is South Africa’s time-tested favourite for residential properties and estate homes. It is exceptionally lightweight and engineered for reliable rainwater runoff.',
       specs: [
-        { name: 'Pitch range', val: 'Minimum 10°' },
-        { name: 'Thicknesses', val: '0.18mm, 0.23mm, 0.27mm, 0.30mm, 0.40mm' },
+        { name: 'Pitch range', val: 'Low pitch / custom' },
+        { name: 'Thicknesses', val: '0.27mm, 0.30mm, 0.40mm' },
         { name: 'Common use', val: 'Residential homes, schools' }
       ],
       badge: 'Highly Popular',
-      image: '/images/media__1782324917840.jpg',
+      image: '/images/corrugated-sheeting.jpg',
     },
     {
       id: 'ibr',
       title: 'IBR Sheeting',
-      subtitle: 'Inverted Box Rib Profile',
+      subtitle: 'IBR Profile',
       icon: <Hammer className="h-8 w-8 text-[#B71510]" />,
       desc: 'Featuring a square-fluted, high-strength profile, IBR is designed for optimum load-bearing strength, maximum water-carrying capacity, and ultra-wide purlin spacing across large spans.',
       specs: [
-        { name: 'Pitch range', val: 'Minimum 5°' },
-        { name: 'Thicknesses', val: '0.30mm, 0.40mm, 0.53mm' },
+        { name: 'Pitch range', val: 'Low pitch / custom' },
+        { name: 'Thicknesses', val: '0.30mm, 0.40mm, 0.47mm, 0.53mm' },
         { name: 'Common use', val: 'Industrial warehouses, malls' }
       ],
       badge: 'Heavy Duty',
-      image: '/images/media__1782324986510.jpg',
+      image: '/images/ibr-sheeting.jpg',
     },
     {
       id: 'coil',
@@ -51,7 +51,7 @@ export default function MaterialShowcase() {
         { name: 'Common use', val: 'Continuous runs, gutters' }
       ],
       badge: 'Zero Joint Leaks',
-      image: '/images/media__1782324917921.jpg',
+      image: '/images/steel-coils.jpg',
     },
   ];
 
@@ -92,9 +92,6 @@ export default function MaterialShowcase() {
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent"></div>
-                <span className="absolute top-3 right-3 rounded bg-slate-950/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
-                  {mat.badge}
-                </span>
               </div>
 
               {/* Text Meta Content */}
@@ -138,7 +135,7 @@ export default function MaterialShowcase() {
                   href={`${COMPANY_INFO.whatsappUrl}?text=${encodeURIComponent(`Hi New Roofing Solutions, I would like to request a free quote for my roof using SABS ${mat.title} profiles.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full text-center rounded-lg bg-[#F96302] text-white py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-[#d85402] hover:scale-105 hover:shadow-md active:scale-95 transition-all duration-300 flex items-center justify-center gap-1.5"
+                  className="w-full text-center rounded-lg bg-[#F96302] text-white py-2.5 px-4 text-xs font-bold uppercase tracking-wider hover:bg-[#d85402] hover:scale-105 hover:shadow-md active:scale-95 transition-all duration-300 flex items-center justify-center whitespace-nowrap gap-1.5"
                 >
                   GET A FREE QUOTE
                 </a>
@@ -252,7 +249,7 @@ export default function MaterialShowcase() {
                     href={`${COMPANY_INFO.whatsappUrl}?text=${encodeURIComponent(`Hi New Roofing Solutions, I am interested in ordering the promotional special: ${prod.title} (Thickness: ${prod.thickness}, Price: ${prod.price} ${prod.priceDetail}). Please provide a full free quotation.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full text-center rounded-lg bg-[#F96302] text-white py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-[#d85402] hover:scale-105 hover:shadow-md active:scale-95 transition-all duration-300 flex items-center justify-center gap-1.5"
+                    className="w-full text-center rounded-lg bg-[#F96302] text-white py-2.5 px-4 text-xs font-bold uppercase tracking-wider hover:bg-[#d85402] hover:scale-105 hover:shadow-md active:scale-95 transition-all duration-300 flex items-center justify-center whitespace-nowrap gap-1.5"
                   >
                     GET A FREE QUOTE
                   </a>
@@ -261,39 +258,7 @@ export default function MaterialShowcase() {
             ))}
           </div>
 
-          {/* Bulk Hardware & Contractors Info Box */}
-          <div className="mt-12 bg-slate-900 rounded-xl p-8 text-white relative overflow-hidden shadow-lg border border-slate-800">
-            <div className="absolute right-0 top-0 translate-x-12 -translate-y-12 h-40 w-40 rounded-full bg-[#F96302]/10 blur-2xl"></div>
-            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="space-y-2 max-w-2xl text-center md:text-left">
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#F96302] bg-[#F96302]/15 border border-[#F96302]/25 px-2.5 py-1 rounded">
-                  FOR HARDWARE STORES & ROOFING CONTRACTORS
-                </span>
-                <h3 className="text-xl sm:text-2xl font-display font-bold uppercase tracking-tight">
-                  Prepare Early for Your Next Bulk Order
-                </h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  We supply top-tier 0.18mm and 0.23mm S-Rib Wave sheets, custom IBR profiles, and NRS Round Wire roofing nails (2", 3", and 4") at unbeatable wholesale factory-direct warehouse pricing.
-                </p>
-              </div>
-              <div className="shrink-0 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                <a
-                  href={`${COMPANY_INFO.whatsappUrl}?text=${encodeURIComponent('Hi New Roofing Solutions, I am a contractor/hardware store owner. I would like to request bulk pricing structures.')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded bg-[#F96302] hover:bg-[#d85402] hover:scale-105 hover:shadow-lg text-white px-6 py-3 text-xs font-bold uppercase tracking-wider text-center shadow flex items-center justify-center gap-1.5 transition-all duration-300"
-                >
-                  BULK ENQUIRY
-                </a>
-                <a
-                  href={`tel:${COMPANY_INFO.landline}`}
-                  className="rounded bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 text-xs font-bold uppercase tracking-wider text-center border border-slate-700 hover:scale-105 hover:bg-slate-700 active:scale-95 transition-all duration-300"
-                >
-                  CALL WAREHOUSE
-                </a>
-              </div>
-            </div>
-          </div>
+
         </div>
 
       </div>

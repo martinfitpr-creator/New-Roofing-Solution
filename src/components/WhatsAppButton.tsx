@@ -101,7 +101,7 @@ export default function WhatsAppButton({ contextMessage = '', onOpenQuoteModal }
                 href={getWhatsAppLink(contextMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full rounded-lg bg-[#F96302] text-white py-2.5 px-4 text-xs font-bold uppercase tracking-wider hover:bg-[#d85402] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                className="w-full rounded-lg bg-[#25D366] text-white py-2.5 px-4 text-xs font-bold uppercase tracking-wider hover:bg-[#20ba5a] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400"
                 id="widget-btn-whatsapp"
               >
                 <svg className="h-4 w-4 fill-current text-white shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -127,10 +127,10 @@ export default function WhatsAppButton({ contextMessage = '', onOpenQuoteModal }
           </div>
         )}
 
-        {/* Small Floating Orange Quote Button (Toggles Chat Box) */}
+        {/* Small Floating Green WhatsApp Quote Button (Toggles Chat Box) */}
         <button
           onClick={() => setShowChatBox(!showChatBox)}
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-[#F96302] text-white shadow-2xl transition-all duration-300 hover:scale-110 hover:bg-[#d85402] focus:outline-none focus:ring-4 focus:ring-orange-300 relative"
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-all duration-300 hover:scale-110 hover:bg-[#20ba5a] focus:outline-none focus:ring-4 focus:ring-green-300 relative"
           aria-label="Get a Free Quote"
           id="floating-whatsapp-btn"
         >
@@ -166,7 +166,7 @@ export default function WhatsAppButton({ contextMessage = '', onOpenQuoteModal }
           href={getWhatsAppLink(`Hi New Roofing Solutions, I'd like to request a free quote.`)}
           target="_blank"
           rel="noopener noreferrer"
-          className="mx-3 flex-[3] rounded-lg bg-[#F96302] text-center text-xs font-extrabold text-white shadow-md hover:bg-[#d85402] hover:scale-105 active:scale-95 py-3 flex items-center justify-center gap-2 uppercase tracking-wider transition-all duration-300"
+          className="mx-3 flex-[3] rounded-lg bg-[#F96302] text-center text-xs font-extrabold text-white shadow-md hover:bg-[#d85402] hover:scale-105 active:scale-95 py-3 flex items-center justify-center whitespace-nowrap gap-2 uppercase tracking-wider transition-all duration-300"
           id="mobile-action-quote-btn"
         >
           {/* High-quality flat solid white SVG path without green background fill */}
