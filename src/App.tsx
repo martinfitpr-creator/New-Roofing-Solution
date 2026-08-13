@@ -235,17 +235,6 @@ export default function App() {
 
               </div>
 
-              {/* Scroll down indicator matching screenshot */}
-              <div 
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center select-none cursor-pointer z-10 opacity-75 hover:opacity-100 transition-opacity"
-                onClick={() => {
-                  const el = document.getElementById('trust-bar');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                <p className="text-[9px] font-extrabold uppercase tracking-[0.3em] text-slate-400">Scroll</p>
-                <ChevronDown className="h-3.5 w-3.5 mx-auto text-slate-400 mt-1 animate-bounce" />
-              </div>
             </section>
 
 
