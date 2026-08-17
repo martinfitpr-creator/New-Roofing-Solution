@@ -8,8 +8,8 @@ import {
 } from 'lucide-react';
 import { motion } from 'motion/react';
 
-import { SERVICES, COMPANY_INFO, BLOG_POSTS, PROJECTS_GALLERY, SERVICE_AREAS, FAQS_LIST } from './data';
-import { PageId, ServiceDetail, BlogPost, LeadSubmission } from './types';
+import { SERVICES, COMPANY_INFO, PROJECTS_GALLERY, SERVICE_AREAS, FAQS_LIST } from './data';
+import { PageId, ServiceDetail, LeadSubmission } from './types';
 import Logo from './components/Logo';
 import Navbar from './components/Navbar';
 import WhatsAppButton from './components/WhatsAppButton';
@@ -20,7 +20,6 @@ import MaterialShowcase from './components/MaterialShowcase';
 export default function App() {
   const [currentTab, setCurrentTab] = useState<PageId>('home');
   const [selectedService, setSelectedService] = useState<ServiceDetail | null>(null);
-  const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
   
   // Modals / Overlays
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
@@ -96,7 +95,6 @@ export default function App() {
         setCurrentTab('home');
         setSelectedService(null);
       }
-      setSelectedBlog(null);
       window.scrollTo(0, 0);
     };
 
@@ -121,7 +119,6 @@ export default function App() {
       setSelectedService(null);
     }
     setCurrentTab(tab);
-    setSelectedBlog(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -182,59 +179,87 @@ export default function App() {
         {currentTab === 'home' && (
           <div className="flex flex-col" id="home-view">
             
-            {/* HERO SECTION */}
-            <section className="relative bg-slate-950 text-white overflow-hidden min-h-[90vh] flex flex-col justify-center items-center py-24" id="home-hero">
-              <div className="absolute inset-0">
-                <img
-                  src="/images/nrs-hero-team.jpg"
-                  alt="New Roofing Solutions Team and Operations"
-                  className="w-full h-full object-cover object-[22%_center] sm:object-center"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-black/55"></div>
-              </div>
-              
-              <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center space-y-8 z-10 w-full">
-                
-                {/* Main Heading & Subheading */}
-                <div className="flex flex-col items-center justify-center space-y-4 mb-10 sm:mb-16 -mt-20 sm:-mt-16 w-full px-4">
-                  <h1 
-                    className="font-['Montserrat',sans-serif] font-extrabold text-[40px] sm:text-[72px] text-white uppercase text-center leading-[1.1]"
-                    style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}
+            {/* HERO SECTION — Full viewport height on mobile so image and content fill the entire screen */}
+            <section
+              id="home-hero"
+              className="relative text-white flex flex-col justify-between items-center overflow-hidden min-h-[calc(100svh-64px)] min-h-[calc(100dvh-64px)] min-h-[calc(100vh-64px)] sm:min-h-[640px] md:min-h-[720px] lg:min-h-[760px]"
+              style={{
+                backgroundImage: 'url(/images/nrs-hero-team.jpg)',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+              }}
+            >
+              {/* Dark gradient overlay: lighter near transparent at top, heavier/darker at bottom */}
+              <div
+                className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/50 to-black/90 pointer-events-none"
+                aria-hidden="true"
+              />
+
+              <div
+                className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-start z-10 w-full pt-10 sm:pt-12 md:pt-16 pb-8 sm:pb-12 h-full flex-grow"
+                id="hero-inner-content"
+              >
+                {/* Heading & Subtitle — moved 2cm lower */}
+                <div
+                  className="flex flex-col items-center justify-center w-full max-w-3xl mx-auto pt-10 sm:pt-14 md:pt-16"
+                  id="hero-text-block"
+                >
+                  <h1
+                    id="hero-headline"
+                    className="text-white uppercase text-center font-black tracking-tight"
                   >
-                    Your Roof Done Right
+                    YOUR ROOF DONE RIGHT
                   </h1>
-                  <p className="font-['Inter',sans-serif] font-medium text-[16px] sm:text-[20px] text-white opacity-95 text-center max-w-2xl" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}>
-                    Residential & commercial roofing across Gauteng
+                  
+                  {/* Subtitle */}
+                  <p
+                    id="hero-subtitle"
+                    className="text-white/95 text-center max-w-2xl text-base sm:text-lg md:text-xl font-semibold mt-7 sm:mt-10 md:mt-12"
+                  >
+                    Residential &amp; commercial roofing across Gauteng
                   </p>
                 </div>
 
-                {/* Main Action buttons stacked on mobile, side-by-side on desktop */}
-                <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xs sm:max-w-xl justify-center pt-2 px-4" id="hero-cta-buttons">
-                  <button
-                    onClick={() => openQuoteWithService('')}
-                    className="w-full sm:w-auto bg-[#F96302] hover:bg-[#d85402] text-white px-10 py-4.5 text-xs font-black uppercase tracking-[0.2em] rounded shadow-2xl hover:shadow-[#F96302]/30 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center text-center whitespace-nowrap"
-                    id="hero-btn-quote"
+                {/* CTA Buttons + SABS Trust Banner — moved 2cm lower */}
+                <div
+                  className="flex flex-col items-center justify-center w-full space-y-6 sm:space-y-8 mt-48 sm:mt-28 md:mt-32"
+                  id="hero-cta-group"
+                >
+                  {/* CTA Buttons: Swapped order — CALL first, then GET A FREE QUOTE */}
+                  <div
+                    className="flex flex-col sm:flex-row items-center justify-center w-full max-w-2xl mx-auto gap-4 sm:gap-6"
+                    id="hero-cta-buttons"
                   >
-                    Get a Free Quote
-                  </button>
-                  <a
-                    href={`tel:${COMPANY_INFO.phone}`}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/80 hover:border-white bg-black/30 hover:bg-white/10 text-white px-10 py-4.5 text-xs font-black uppercase tracking-[0.2em] rounded shadow-2xl transition-all duration-300 active:scale-95 text-center"
-                    id="hero-btn-call"
-                  >
-                    <Phone className="h-3.5 w-3.5 text-white shrink-0" />
-                    Call {COMPANY_INFO.phoneDisplay}
-                  </a>
+                    {/* Phone button with framed box */}
+                    <a
+                      href={`tel:${COMPANY_INFO.phone}`}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-3 border-2 border-white/90 hover:border-white bg-black/40 hover:bg-white/15 text-white px-8 sm:px-10 h-[58px] sm:h-[64px] text-sm sm:text-base font-bold uppercase tracking-[0.14em] rounded-lg shadow-xl transition-all duration-300 active:scale-95 whitespace-nowrap shrink-0 group cursor-pointer"
+                      id="hero-call-link"
+                    >
+                      <Phone className="h-5 w-5 text-white group-hover:scale-110 transition-transform duration-200 shrink-0" />
+                      <span className="whitespace-nowrap">CALL {COMPANY_INFO.phoneDisplay}</span>
+                    </a>
+
+                    {/* Primary orange button */}
+                    <button
+                      onClick={() => openQuoteWithService('')}
+                      className="w-full sm:w-auto inline-flex items-center justify-center bg-[#F96302] hover:bg-[#d85402] text-white px-10 sm:px-12 h-[58px] sm:h-[64px] text-sm sm:text-base font-black uppercase tracking-[0.16em] rounded-lg shadow-2xl hover:shadow-[#F96302]/40 hover:scale-105 active:scale-95 transition-all duration-300 whitespace-nowrap shrink-0 cursor-pointer"
+                      id="hero-btn-quote"
+                    >
+                      GET A FREE QUOTE
+                    </button>
+                  </div>
+
+                  {/* Trust line banner — moved 3cm lower on mobile only */}
+                  <div className="pt-20 sm:pt-12 md:pt-14">
+                    <div className="inline-flex items-center justify-center px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-black/60 backdrop-blur-sm border border-white/20 shadow-md">
+                      <p id="hero-trust-text" className="text-white/90 font-bold uppercase tracking-wider text-[11px] sm:text-xs md:text-[13px]">
+                        SABS APPROVED MATERIALS&nbsp;&bull;&nbsp;5-YEAR WORKMANSHIP GUARANTEE
+                      </p>
+                    </div>
+                  </div>
                 </div>
-
-                {/* Small spaced uppercase trust credentials matching R & D Perez footer line */}
-                <p className="text-[10px] sm:text-xs text-slate-200 leading-relaxed max-w-xl mx-auto uppercase tracking-[0.25em] font-extrabold pt-2">
-                  SABS APPROVED MATERIALS • 5-YEAR WORKMANSHIP GUARANTEE
-                </p>
-
               </div>
-
             </section>
 
 
@@ -484,9 +509,11 @@ export default function App() {
                   </a>
                 </div>
 
-                {/* Trusted By — Client Logos (real images, no labels) */}
+                {/* Client Logos */}
                 <div className="border-t border-gray-200 pt-10 space-y-6">
-                  <p className="text-center text-xs font-bold uppercase tracking-widest text-slate-500">Trusted By</p>
+                  <h3 className="text-center text-lg sm:text-xl font-extrabold uppercase tracking-wider text-slate-800">
+                    Some of Our Clients
+                  </h3>
                   <div className="flex flex-wrap items-center justify-center gap-10 md:gap-20">
                     {/* NWU */}
                     <div className="group hover:scale-110 transition-transform duration-300">
@@ -822,9 +849,40 @@ export default function App() {
               </p>
             </div>
 
-            {/* Quote Form Embed for rapid contact */}
-            <div className="max-w-xl mx-auto pt-4">
-              <QuoteForm />
+            {/* Clients & Partners Section */}
+            <div className="border-t border-gray-200 pt-10 space-y-6 text-center" id="about-clients-partners">
+              <div className="space-y-2">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#E8611A]">CLIENTS &amp; PARTNERS</span>
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900 uppercase tracking-tight">
+                  We Have Worked With The Following Brands
+                </h3>
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-10 md:gap-20 pt-4">
+                {/* NWU */}
+                <div className="group hover:scale-110 transition-transform duration-300">
+                  <img
+                    src="/images/logo-nwu.png"
+                    alt="NWU - North-West University"
+                    className="h-16 w-auto object-contain filter drop-shadow-md"
+                  />
+                </div>
+                {/* Boitumelo */}
+                <div className="group hover:scale-110 transition-transform duration-300">
+                  <img
+                    src="/images/logo-boitumelo.png"
+                    alt="Boitumelo"
+                    className="h-16 w-auto object-contain filter drop-shadow-md"
+                  />
+                </div>
+                {/* UD Trucks */}
+                <div className="group hover:scale-110 transition-transform duration-300">
+                  <img
+                    src="/images/logo-ud-trucks.png"
+                    alt="UD Trucks"
+                    className="h-14 w-auto object-contain filter drop-shadow-md"
+                  />
+                </div>
+              </div>
             </div>
 
           </div>
@@ -1141,119 +1199,7 @@ export default function App() {
         )}
 
 
-        {/* ==================== 8. VIEW: BLOG PAGE ==================== */}
-        {currentTab === 'blog' && (
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-12" id="blog-view">
-            
-            {/* If a specific blog article is selected, view it in detail */}
-            {selectedBlog ? (
-              <div className="max-w-3xl mx-auto space-y-8" id="blog-detail-view">
-                
-                <button
-                  onClick={() => setSelectedBlog(null)}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#B71510] hover:text-[#F96302] focus:outline-none transition-colors"
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                  Back to All Articles
-                </button>
-
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 text-xs text-slate-500 font-mono">
-                    <span className="uppercase text-[#B71510] font-bold">{selectedBlog.category}</span>
-                    <span>•</span>
-                    <span>{selectedBlog.date}</span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" /> {selectedBlog.readTime}</span>
-                  </div>
-                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 uppercase leading-tight">
-                    {selectedBlog.title}
-                  </h1>
-                </div>
-
-                {/* Clean, perfectly contained inline blog featured image */}
-                <div className="w-full h-64 sm:h-80 rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-100">
-                  <img
-                    src="/images/work-nwu-building.jpg"
-                    alt={selectedBlog.title}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-
-                {/* Article Content paragraphs */}
-                <div className="space-y-6 text-xs sm:text-sm text-slate-700 leading-relaxed">
-                  {selectedBlog.content.map((paragraph, idx) => (
-                    <p key={idx}>{paragraph}</p>
-                  ))}
-                </div>
-
-                <div className="pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-slate-50 p-6 rounded-xl border">
-                  <div className="text-center sm:text-left">
-                    <h4 className="text-xs font-bold text-slate-900 uppercase">Need assistance with your roof?</h4>
-                    <p className="text-xs text-slate-500 mt-1">Get an expert site check and transparent quote within hours.</p>
-                  </div>
-                  <a
-                    href={`${COMPANY_INFO.whatsappUrl}?text=${encodeURIComponent(`Hi New Roofing Solutions, I read your article "${selectedBlog.title}" and would like to request a free quote.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-lg bg-[#F96302] hover:bg-[#d85402] hover:scale-105 hover:shadow-lg text-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider shadow flex items-center justify-center text-center whitespace-nowrap gap-1.5 transition-all duration-300"
-                  >
-                    GET A FREE QUOTE
-                  </a>
-                </div>
-
-              </div>
-            ) : (
-              <div className="space-y-10">
-                <div className="border-b border-gray-200 pb-6 text-center max-w-2xl mx-auto space-y-2">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#B71510]">EDUCATIONAL GUIDES & ADVICE</span>
-                  <h1 className="text-3xl sm:text-4xl font-black text-slate-900 uppercase">Roofing Insights Blog</h1>
-                  <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                    Read expert articles regarding pricing structures, materials comparison, and waterproofing benefits in South Africa.
-                  </p>
-                </div>
-
-                {/* Blog Grid */}
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3" id="blog-grid-list">
-                  {BLOG_POSTS.map((post) => (
-                    <article
-                      key={post.id}
-                      className="group flex flex-col justify-between rounded-xl border border-gray-200 bg-[#f9fafb] p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:border-gray-300"
-                    >
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3 text-[10px] text-slate-500 font-mono">
-                          <span className="uppercase text-[#B71510] font-bold">{post.category}</span>
-                          <span>•</span>
-                          <span>{post.readTime}</span>
-                        </div>
-                        <h3 className="font-sans font-bold text-slate-800 text-base leading-snug group-hover:text-[#B71510] transition-colors line-clamp-2">
-                          {post.title}
-                        </h3>
-                        <p className="text-xs text-slate-500 line-clamp-3 leading-relaxed">
-                          {post.excerpt}
-                        </p>
-                      </div>
-
-                      <div className="pt-4 border-t border-gray-200 mt-4 flex items-center justify-between">
-                        <button
-                          onClick={() => setSelectedBlog(post)}
-                          className="text-xs font-bold text-[#B71510] hover:text-[#F96302] flex items-center gap-1 transition-colors"
-                        >
-                          Read Article
-                          <ArrowRight className="h-3.5 w-3.5" />
-                        </button>
-                        <span className="text-[10px] text-slate-500">{post.date}</span>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </div>
-            )}
-
-          </div>
-        )}
-
-
-        {/* ==================== 9. VIEW: CONTACT US PAGE ==================== */}
+        {/* ==================== 8. VIEW: CONTACT US PAGE ==================== */}
         {currentTab === 'contact' && (
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 space-y-12" id="contact-view">
             
@@ -1364,16 +1310,53 @@ export default function App() {
           
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4" id="footer-links-grid">
             
-            {/* Column 1: Logo & Tagline */}
+            {/* Column 1: Logo & Tagline & Socials */}
             <div className="space-y-4">
               <div className="flex justify-start">
-                <img src="/images/nrs-main-logo.png" alt="New Roofing Solutions" className="h-16 w-auto" />
+                <img src="/images/nrs-main-logo.png" alt="New Roofing Solutions" className="w-[110px] h-auto object-contain" />
               </div>
               <p className="text-xs text-slate-300 leading-relaxed">
                 "{COMPANY_INFO.tagline}" <br />
                 {COMPANY_INFO.taglineAlternative}
               </p>
-              <div className="pt-2">
+
+              {/* Social Media Channels */}
+              <div className="flex items-center gap-2.5 pt-1">
+                {/* Facebook */}
+                <a
+                  href={COMPANY_INFO.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-[#1877F2] hover:bg-[#0e5fc0] transition-all duration-200 shadow-md hover:scale-110 active:scale-95"
+                  title="Visit our Facebook Page"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+
+                {/* TikTok */}
+                <a
+                  href={COMPANY_INFO.tiktokUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-[#010101] hover:bg-[#333] transition-all duration-200 shadow-md hover:scale-110 active:scale-95 border border-slate-700"
+                  title="Visit our TikTok Page"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"></path></svg>
+                </a>
+
+                {/* LinkedIn */}
+                <a
+                  href={COMPANY_INFO.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-[#0A66C2] hover:bg-[#084e96] transition-all duration-200 shadow-md hover:scale-110 active:scale-95"
+                  title="Visit our LinkedIn Page"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+              </div>
+
+              <div className="pt-1">
                 <span className="inline-block text-[10px] font-mono text-slate-400">
                   🇿🇦 Proudly South African Enterprise
                 </span>
@@ -1388,7 +1371,6 @@ export default function App() {
                 <li><button onClick={() => navigateTo('about')} className="hover:text-[#F96302] transition-colors">About Our Team</button></li>
                 <li><button onClick={() => navigateTo('service-areas')} className="hover:text-[#F96302] transition-colors">Our Service Areas</button></li>
                 <li><button onClick={() => navigateTo('faqs')} className="hover:text-[#F96302] transition-colors">Frequently Asked Questions</button></li>
-                <li><button onClick={() => navigateTo('blog')} className="hover:text-[#F96302] transition-colors">Our Blog Articles</button></li>
                 <li><button onClick={() => navigateTo('contact')} className="hover:text-[#F96302] transition-colors">Get Free Quote</button></li>
               </ul>
             </div>

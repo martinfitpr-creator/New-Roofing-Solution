@@ -230,13 +230,13 @@ export default function MaterialShowcase() {
                     ))}
                   </ul>
 
-                  {/* Specs footer */}
+                  {/* Specs footer — larger bold font size */}
                   {prod.specs && (
-                    <div className="pt-3 border-t border-slate-100 space-y-1.5">
+                    <div className="pt-3 border-t border-slate-100 space-y-2">
                       {prod.specs.map((spec, i) => (
-                        <div key={i} className="flex items-start justify-between gap-4 text-[10px] font-mono">
-                          <span className="text-slate-500 uppercase shrink-0">{spec.name}</span>
-                          <span className="text-slate-800 font-bold text-right">{spec.val}</span>
+                        <div key={i} className="flex items-center justify-between gap-4 text-xs font-mono">
+                          <span className="text-slate-600 font-bold uppercase tracking-wider shrink-0">{spec.name}</span>
+                          <span className="text-slate-950 font-black text-right">{spec.val}</span>
                         </div>
                       ))}
                     </div>

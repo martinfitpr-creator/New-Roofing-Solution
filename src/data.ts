@@ -577,10 +577,6 @@ export const SERVICE_AREAS = [
 
 export const FAQS_LIST = [
   {
-    q: 'How much does a roof repair cost in South Africa?',
-    a: 'Minor leak repairs and tile replacements typically cost between R1,500 and R4,500. Moderate flashing repairs or re-screwing range from R4,500 to R12,000. Major truss reconstructions or massive waterproofing starts from R12,000. We provide 100% free, detailed, non-obligation quotes.'
-  },
-  {
     q: 'How often should my roof be inspected?',
     a: 'We recommend inspecting your roof at least once a year, preferably before the wet summer or winter season, or immediately after a severe hailstorm to detect hairline tile cracks early.'
   },

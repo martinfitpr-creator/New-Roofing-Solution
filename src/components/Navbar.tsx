@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { Menu, X, ChevronDown, Phone, MessageSquare } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight, Phone } from 'lucide-react';
 import { SERVICES, COMPANY_INFO } from '../data';
 import { PageId } from '../types';
-import Logo from './Logo';
 
 interface NavbarProps {
   currentTab: PageId;
@@ -14,74 +13,118 @@ interface NavbarProps {
 export default function Navbar({ currentTab, onNavigate, onOpenQuote }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const dropdownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Scroll effect
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent scrolling when mobile menu is open
+  // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
   const handleLinkClick = (tab: PageId) => {
     onNavigate(tab);
     setIsOpen(false);
     setDropdownOpen(false);
+    setMobileServicesOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const isActive = (tab: PageId) => currentTab === tab;
 
+  const isServiceActive =
+    currentTab.includes('roof') ||
+    currentTab.includes('gutter') ||
+    currentTab.includes('residential') ||
+    currentTab.includes('commercial') ||
+    currentTab.includes('industrial') ||
+    currentTab === 'services-overview';
+
+  // Hover handlers with small delay to prevent flicker when crossing the gap
+  const openDropdown = () => {
+    if (dropdownTimerRef.current) clearTimeout(dropdownTimerRef.current);
+    setDropdownOpen(true);
+  };
+
+  const closeDropdown = () => {
+    dropdownTimerRef.current = setTimeout(() => setDropdownOpen(false), 80);
+  };
+
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
-        isOpen 
-          ? 'bg-white/85 backdrop-blur-sm py-4 border-b border-slate-100' 
+        isOpen
+          ? 'bg-white shadow-md border-b border-slate-100'
           : scrolled
-            ? 'bg-white/80 shadow-md backdrop-blur-md py-3 border-b border-slate-200'
-            : 'bg-white/75 backdrop-blur-sm py-4 border-b border-slate-100'
+            ? 'bg-white/95 shadow-md backdrop-blur-md border-b border-slate-200'
+            : 'bg-white/90 backdrop-blur-sm border-b border-slate-100'
       }`}
       id="main-app-header"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" id="navbar-container">
-        <div className="flex h-16 items-center justify-between" id="navbar-desktop-layout">
-          
-          {/* Quick Call icon on mobile left side */}
-          <div className="flex md:hidden items-center gap-2" id="mobile-left-actions">
-            <a
-              href={`tel:${COMPANY_INFO.phone}`}
-              className="rounded-full bg-slate-100 p-2 text-slate-700 hover:text-[#B71510]"
-              title="Call Contractor"
-              id="mobile-phone-shortcut"
-            >
-              <Phone className="h-5 w-5" />
-            </a>
+
+        {/* ════════════════════════════════════════════════════════
+            MOBILE layout: flex, phone | logo | hamburger
+            DESKTOP layout: CSS grid 1fr | auto | 1fr
+              - Left cell (1fr):  Home / About / Services ▼
+              - Center cell (auto): NRS logo — always at true 50%
+              - Right cell (1fr): Contact / Call / socials / Quote
+            Grid guarantees zero overlap at any viewport width.
+        ═══════════════════════════════════════════════════════ */}
+
+        {/* ── MOBILE row (flex, hidden on md+) ── */}
+        <div className="flex md:hidden h-16 items-center justify-between px-0" id="navbar-mobile-row">
+          {/* Phone icon */}
+          <a
+            href={`tel:${COMPANY_INFO.phone}`}
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 text-slate-600 hover:text-[#B71510] hover:bg-red-50 transition-colors duration-200 shrink-0"
+            title="Call Us"
+            id="mobile-phone-shortcut"
+          >
+            <Phone className="h-[18px] w-[18px]" />
+          </a>
+
+          {/* Logo — naturally centred by flex-1 on both sides */}
+          <div className="flex-1 flex justify-center items-center" id="navbar-middle-logo-mobile">
+            <button onClick={() => handleLinkClick('home')} className="focus:outline-none" aria-label="Home">
+              <img src="/images/nrs-main-logo.jpg" alt="NRS Logo" className="h-9 w-auto" />
+            </button>
           </div>
 
-          {/* LEFT COLUMN: Laptop Links (Hidden on mobile) */}
-          <nav className="hidden md:flex flex-1 items-center justify-end space-x-8 pr-8" id="navbar-left-links">
+          {/* Hamburger */}
+          <div className="shrink-0" id="mobile-hamburger-trigger">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex items-center justify-center w-10 h-10 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none transition-colors duration-200"
+              aria-expanded={isOpen}
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            >
+              {isOpen ? <X className="h-[22px] w-[22px]" /> : <Menu className="h-[22px] w-[22px]" />}
+            </button>
+          </div>
+        </div>
+
+        {/* ── DESKTOP grid row (hidden on mobile, shown on md+) ── */}
+        <div
+          className="hidden md:grid h-[68px] items-center"
+          style={{ gridTemplateColumns: '1fr auto 1fr' }}
+          id="navbar-desktop-layout"
+        >
+
+          {/* ── LEFT NAV — fills left 1fr, content pushed to the right edge ── */}
+          <nav className="flex items-center justify-end gap-8 lg:gap-10 pr-10 lg:pr-14" id="navbar-left-links">
             <button
               onClick={() => handleLinkClick('home')}
-              className={`text-[11px] font-bold uppercase tracking-[0.15em] transition-colors hover:text-[#B71510] ${
-                isActive('home') ? 'text-[#B71510]' : 'text-slate-800'
+              className={`text-[13px] font-bold uppercase tracking-[0.08em] whitespace-nowrap transition-colors hover:text-[#B71510] ${
+                isActive('home') ? 'text-[#B71510]' : 'text-slate-700'
               }`}
               id="nav-link-home"
             >
@@ -89,53 +132,63 @@ export default function Navbar({ currentTab, onNavigate, onOpenQuote }: NavbarPr
             </button>
             <button
               onClick={() => handleLinkClick('about')}
-              className={`text-[11px] font-bold uppercase tracking-[0.15em] transition-colors hover:text-[#B71510] ${
-                isActive('about') ? 'text-[#B71510]' : 'text-slate-800'
+              className={`text-[13px] font-bold uppercase tracking-[0.08em] whitespace-nowrap transition-colors hover:text-[#B71510] ${
+                isActive('about') ? 'text-[#B71510]' : 'text-slate-700'
               }`}
               id="nav-link-about"
             >
               About
             </button>
 
-            {/* Roofing Services Dropdown Trigger */}
-            <div className="relative">
+            {/* Services dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={openDropdown}
+              onMouseLeave={closeDropdown}
+            >
               <button
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                onMouseEnter={() => setDropdownOpen(true)}
-                className={`flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.15em] transition-colors hover:text-[#B71510] focus:outline-none ${
-                  currentTab.includes('roof') || currentTab.includes('gutter') || currentTab.includes('residential') || currentTab.includes('commercial') || currentTab.includes('industrial')
-                    ? 'text-[#B71510]'
-                    : 'text-slate-800'
+                onClick={() => setDropdownOpen(v => !v)}
+                className={`flex items-center gap-1 text-[13px] font-bold uppercase tracking-[0.08em] whitespace-nowrap transition-colors hover:text-[#B71510] focus:outline-none ${
+                  isServiceActive ? 'text-[#B71510]' : 'text-slate-700'
                 }`}
                 id="nav-link-services-trigger"
+                aria-haspopup="true"
+                aria-expanded={dropdownOpen}
               >
                 Services
-                <ChevronDown className="h-3.5 w-3.5" />
+                <ChevronDown className={`h-3.5 w-3.5 flex-shrink-0 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
+              {/* Invisible mouse-bridge so moving from trigger into panel doesn't dismiss it */}
+              {dropdownOpen && <div className="absolute left-0 top-full w-full h-3" aria-hidden="true" />}
+
+              {/* Dropdown panel */}
               {dropdownOpen && (
                 <div
-                  className="absolute left-0 mt-3 w-72 rounded bg-white border border-slate-200 shadow-2xl py-3 z-50 grid grid-cols-1"
-                  onMouseLeave={() => setDropdownOpen(false)}
+                  className="absolute left-0 top-[calc(100%+10px)] w-72 rounded-xl bg-white border border-slate-200 shadow-2xl py-2 overflow-hidden"
+                  style={{ zIndex: 9999, animation: 'dropdownFadeIn 0.15s ease-out forwards' }}
+                  onMouseEnter={openDropdown}
+                  onMouseLeave={closeDropdown}
                   id="services-dropdown-panel"
                 >
-                  <div className="px-4 py-1 border-b border-slate-100 mb-1">
-                    <span className="text-[9px] font-extrabold tracking-widest text-slate-400 uppercase">Roofing Services</span>
+                  <div className="px-4 py-2 border-b border-slate-100">
+                    <span className="text-[9px] font-bold tracking-widest text-slate-400 uppercase">Roofing Services</span>
                   </div>
                   {SERVICES.map((srv) => (
                     <button
                       key={srv.slug}
                       onClick={() => handleLinkClick(srv.slug)}
-                      className="block px-4 py-2 text-left text-[11px] font-bold text-slate-700 hover:bg-slate-50 hover:text-[#B71510] transition-all border-l-2 border-transparent hover:border-[#B71510]"
+                      className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-[12px] font-semibold text-slate-700 hover:bg-orange-50 hover:text-[#B71510] transition-all duration-150 border-l-2 border-transparent hover:border-[#B71510] group"
                       id={`dropdown-item-${srv.slug}`}
                     >
+                      <ChevronRight className="h-3 w-3 text-slate-300 group-hover:text-[#B71510] shrink-0 transition-colors" />
                       {srv.title}
                     </button>
                   ))}
-                  <div className="border-t border-slate-100 mt-1 pt-1">
+                  <div className="border-t border-slate-100 mt-1 px-4 py-2">
                     <button
                       onClick={() => handleLinkClick('services-overview')}
-                      className="block w-full px-4 py-1.5 text-center text-[10px] font-bold text-slate-500 hover:text-[#B71510]"
+                      className="text-[10px] font-bold text-slate-400 hover:text-[#B71510] transition-colors"
                     >
                       All Services Overview →
                     </button>
@@ -145,142 +198,135 @@ export default function Navbar({ currentTab, onNavigate, onOpenQuote }: NavbarPr
             </div>
           </nav>
 
-          {/* MIDDLE COLUMN: LOGO Centered on both Mobile and Laptop */}
-          <div className="flex-shrink-0 flex justify-center items-center" id="navbar-middle-logo">
-            <button onClick={() => handleLinkClick('home')} className="focus:outline-none" aria-label="New Roofing Solutions Home">
-              <img src="/images/nrs-main-logo.jpg" alt="NRS Logo" className="h-10 w-auto" />
+          {/* ── CENTRE LOGO — auto width, always at true 50% of grid container ── */}
+          <div className="flex justify-center items-center px-6" id="navbar-middle-logo">
+            <button
+              onClick={() => handleLinkClick('home')}
+              className="focus:outline-none flex items-center"
+              aria-label="New Roofing Solutions — Home"
+            >
+              <img
+                src="/images/nrs-main-logo.jpg"
+                alt="NRS New Roofing Solutions Logo"
+                className="h-10 w-auto"
+              />
             </button>
           </div>
 
-          {/* RIGHT COLUMN: Laptop Links & CTAs (Hidden on mobile) */}
-          <nav className="hidden md:flex flex-1 items-center justify-start space-x-8 pl-8" id="navbar-right-links">
-
+          {/* ── RIGHT NAV — fills right 1fr, content pushed to the left edge ── */}
+          <nav className="flex items-center justify-start gap-8 lg:gap-10 pl-10 lg:pl-14" id="navbar-right-links">
             <button
               onClick={() => handleLinkClick('contact')}
-              className={`text-[11px] font-bold uppercase tracking-[0.15em] transition-colors hover:text-[#B71510] ${
-                isActive('contact') ? 'text-[#B71510]' : 'text-slate-800'
+              className={`text-[13px] font-bold uppercase tracking-[0.08em] whitespace-nowrap transition-colors hover:text-[#B71510] ${
+                isActive('contact') ? 'text-[#B71510]' : 'text-slate-700'
               }`}
               id="nav-link-contact"
             >
               Contact
             </button>
 
-            {/* Direct Call Button */}
             <a
               href={`tel:${COMPANY_INFO.phone}`}
-              className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-slate-700 hover:text-[#B71510] transition-colors pl-2"
+              className="flex items-center gap-1.5 text-[13px] font-bold uppercase tracking-[0.08em] whitespace-nowrap text-slate-700 hover:text-[#B71510] transition-colors"
               id="nav-btn-call"
             >
-              <Phone className="h-3.5 w-3.5 text-[#B71510]" />
+              <Phone className="h-4 w-4 text-[#B71510]" />
               Call
             </a>
 
-            {/* Facebook Link */}
-            <a
-              href={COMPANY_INFO.facebookUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-9 h-9 rounded-full bg-[#1877F2] hover:bg-[#0e5fc0] transition-all duration-200 shadow-md hover:scale-110 active:scale-95"
-              title="Visit our Facebook Page"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-            </a>
-
-            {/* TikTok Link */}
-            <a
-              href={COMPANY_INFO.tiktokUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-9 h-9 rounded-full bg-[#010101] hover:bg-[#333] transition-all duration-200 shadow-md hover:scale-110 active:scale-95 border border-slate-300"
-              title="Visit our TikTok Page"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"></path></svg>
-            </a>
-
-            {/* LinkedIn Link */}
-            <a
-              href={COMPANY_INFO.linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-9 h-9 rounded-full bg-[#0A66C2] hover:bg-[#084e96] transition-all duration-200 shadow-md hover:scale-110 active:scale-95"
-              title="Visit our LinkedIn Page"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </a>
-
-            {/* Quick Action Quote button - Simple brand orange quote button, still leads to WhatsApp */}
+            {/* Orange CTA */}
             <a
               href={`${COMPANY_INFO.whatsappUrl}?text=${encodeURIComponent('Hi New Roofing Solutions, I would like to request a free quote for roofing services.')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded bg-[#F96302] text-white px-5 py-2.5 text-[11px] font-extrabold uppercase tracking-[0.15em] shadow-md hover:bg-[#d85402] hover:scale-105 hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center text-center whitespace-nowrap gap-1.5"
+              className="rounded-lg bg-[#F96302] text-white px-6 py-2.5 text-[12.5px] font-bold uppercase tracking-[0.1em] shadow-md hover:bg-[#d85402] hover:scale-105 hover:shadow-lg active:scale-95 transition-all duration-200 flex items-center justify-center whitespace-nowrap"
               id="nav-btn-quote"
             >
               GET A FREE QUOTE
             </a>
           </nav>
 
-          {/* Mobile hamburger - Right Aligned on Mobile, hidden on Laptop */}
-          <div className="flex md:hidden" id="mobile-hamburger-trigger">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center rounded-md p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none"
-              aria-expanded="false"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
-
-        </div>
+        </div>{/* end desktop grid */}
       </div>
 
-      {/* MOBILE NAV PANEL (Full screen dark drawer matching reference design) */}
+      {/* ── MOBILE DRAWER ── */}
       {isOpen && typeof document !== 'undefined' && createPortal(
-        <div className="fixed inset-0 z-[100] bg-black flex flex-col justify-between p-6 overflow-y-auto" id="mobile-drawer-menu">
-          
-          {/* Header row: Logo at left, Close X at right */}
-          <div className="flex items-center justify-between pb-6 border-b border-white/10">
-            <img src="/images/nrs-main-logo.png" alt="NRS Logo" className="h-9 w-auto" />
+        <div
+          className="fixed inset-0 z-[100] bg-[#0a0a0a] flex flex-col overflow-y-auto"
+          id="mobile-drawer-menu"
+        >
+          {/* Drawer header */}
+          <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+            <img src="/images/nrs-main-logo.png" alt="NRS Logo" className="h-8 w-auto" />
             <button
               onClick={() => setIsOpen(false)}
-              className="rounded-md p-2 text-white/70 hover:text-white hover:bg-white/10 focus:outline-none transition-colors"
+              className="flex items-center justify-center w-10 h-10 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors"
               aria-label="Close menu"
             >
-              <X className="h-7 w-7" />
+              <X className="h-6 w-6" />
             </button>
           </div>
 
-          {/* Giant bold white navigation links */}
-          <div className="flex-1 flex flex-col justify-center py-6 pl-2 space-y-6">
+          {/* Nav links */}
+          <div className="flex-1 px-6 py-8 space-y-1">
             <button
               onClick={() => handleLinkClick('home')}
-              className={`text-left text-2xl sm:text-3xl font-black uppercase tracking-wider transition-colors ${
-                isActive('home') ? 'text-[#B71510]' : 'text-white hover:text-[#B71510]'
+              className={`w-full text-left text-2xl font-black uppercase tracking-wide py-3 transition-colors border-b border-white/5 ${
+                isActive('home') ? 'text-[#B71510]' : 'text-white hover:text-[#F96302]'
               }`}
             >
               HOME
             </button>
             <button
               onClick={() => handleLinkClick('about')}
-              className={`text-left text-2xl sm:text-3xl font-black uppercase tracking-wider transition-colors ${
-                isActive('about') ? 'text-[#B71510]' : 'text-white hover:text-[#B71510]'
+              className={`w-full text-left text-2xl font-black uppercase tracking-wide py-3 transition-colors border-b border-white/5 ${
+                isActive('about') ? 'text-[#B71510]' : 'text-white hover:text-[#F96302]'
               }`}
             >
               ABOUT
             </button>
-            <button
-              onClick={() => handleLinkClick('services-overview')}
-              className={`text-left text-2xl sm:text-3xl font-black uppercase tracking-wider transition-colors ${
-                isActive('services-overview') || currentTab.includes('roof') || currentTab.includes('gutter') ? 'text-[#B71510]' : 'text-white hover:text-[#B71510]'
-              }`}
-            >
-              SERVICES
-            </button>
+
+            {/* SERVICES — tap to expand */}
+            <div className="border-b border-white/5">
+              <button
+                onClick={() => setMobileServicesOpen(v => !v)}
+                className={`w-full text-left text-2xl font-black uppercase tracking-wide py-3 flex items-center justify-between transition-colors ${
+                  isServiceActive ? 'text-[#B71510]' : 'text-white hover:text-[#F96302]'
+                }`}
+                aria-expanded={mobileServicesOpen}
+              >
+                SERVICES
+                <ChevronDown
+                  className={`h-6 w-6 shrink-0 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180 text-[#F96302]' : 'text-white/40'}`}
+                />
+              </button>
+
+              {mobileServicesOpen && (
+                <div className="pb-3 pl-2 space-y-0.5">
+                  {SERVICES.map((srv) => (
+                    <button
+                      key={srv.slug}
+                      onClick={() => handleLinkClick(srv.slug)}
+                      className="w-full text-left text-base font-semibold text-slate-300 hover:text-[#F96302] py-2.5 px-3 rounded-lg hover:bg-white/5 transition-colors flex items-center gap-2"
+                    >
+                      <ChevronRight className="h-3.5 w-3.5 text-[#F96302] shrink-0" />
+                      {srv.title}
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => handleLinkClick('services-overview')}
+                    className="w-full text-left text-sm font-bold text-[#F96302] py-2 px-3 hover:underline transition-colors"
+                  >
+                    All Services Overview →
+                  </button>
+                </div>
+              )}
+            </div>
 
             <button
               onClick={() => handleLinkClick('contact')}
-              className={`text-left text-2xl sm:text-3xl font-black uppercase tracking-wider transition-colors ${
-                isActive('contact') ? 'text-[#B71510]' : 'text-white hover:text-[#B71510]'
+              className={`w-full text-left text-2xl font-black uppercase tracking-wide py-3 transition-colors border-b border-white/5 ${
+                isActive('contact') ? 'text-[#B71510]' : 'text-white hover:text-[#F96302]'
               }`}
             >
               CONTACT
@@ -288,76 +334,52 @@ export default function Navbar({ currentTab, onNavigate, onOpenQuote }: NavbarPr
             <a
               href={`tel:${COMPANY_INFO.phone}`}
               onClick={() => setIsOpen(false)}
-              className="text-left text-2xl sm:text-3xl font-black uppercase tracking-wider text-white hover:text-[#B71510]"
+              className="block w-full text-left text-2xl font-black uppercase tracking-wide py-3 text-white hover:text-[#F96302] transition-colors border-b border-white/5"
             >
               CALL
             </a>
             <a
               href={COMPANY_INFO.facebookUrl}
               onClick={() => setIsOpen(false)}
-              className="text-left text-2xl sm:text-3xl font-black uppercase tracking-wider text-white hover:text-[#B71510]"
-              target="_blank"
-              rel="noopener noreferrer"
+              className="block w-full text-left text-2xl font-black uppercase tracking-wide py-3 text-white hover:text-[#F96302] transition-colors border-b border-white/5"
+              target="_blank" rel="noopener noreferrer"
             >
               FACEBOOK
             </a>
             <a
               href={COMPANY_INFO.tiktokUrl}
               onClick={() => setIsOpen(false)}
-              className="text-left text-2xl sm:text-3xl font-black uppercase tracking-wider text-white hover:text-[#B71510]"
-              target="_blank"
-              rel="noopener noreferrer"
+              className="block w-full text-left text-2xl font-black uppercase tracking-wide py-3 text-white hover:text-[#F96302] transition-colors border-b border-white/5"
+              target="_blank" rel="noopener noreferrer"
             >
               TIKTOK
             </a>
             <a
               href={COMPANY_INFO.linkedinUrl}
               onClick={() => setIsOpen(false)}
-              className="text-left text-2xl sm:text-3xl font-black uppercase tracking-wider text-white hover:text-[#B71510]"
-              target="_blank"
-              rel="noopener noreferrer"
+              className="block w-full text-left text-2xl font-black uppercase tracking-wide py-3 text-white hover:text-[#F96302] transition-colors"
+              target="_blank" rel="noopener noreferrer"
             >
               LINKEDIN
             </a>
-            <a
-              href={`${COMPANY_INFO.whatsappUrl}?text=${encodeURIComponent('Hi New Roofing Solutions, I would like to request a free quote for roofing services.')}`}
-              onClick={() => setIsOpen(false)}
-              className="text-left text-2xl sm:text-3xl font-black uppercase tracking-wider text-white hover:text-[#B71510]"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GET A FREE QUOTE
-            </a>
           </div>
 
-          {/* Bottom CTA + contact info */}
-          <div className="space-y-5 pt-6 border-t border-white/10">
+          {/* Drawer footer CTA */}
+          <div className="px-6 pb-8 pt-4 border-t border-white/10 space-y-3">
             <button
-              onClick={() => {
-                setIsOpen(false);
-                onOpenQuote();
-              }}
-              className="w-full bg-[#B71510] hover:bg-[#9c120d] active:scale-95 text-white py-4 text-sm font-black uppercase tracking-[0.25em] rounded transition-all duration-300 shadow-xl"
+              onClick={() => { setIsOpen(false); onOpenQuote(); }}
+              className="w-full bg-[#F96302] hover:bg-[#d85402] active:scale-95 text-white py-4 text-sm font-black uppercase tracking-[0.2em] rounded-xl transition-all duration-200 shadow-lg"
             >
               GET A FREE QUOTE
             </button>
-
-            <div className="space-y-1.5 pl-1">
-              <a
-                href={`tel:${COMPANY_INFO.phone}`}
-                className="block text-base font-bold text-white hover:text-[#B71510] transition-colors"
-              >
-                {COMPANY_INFO.phoneDisplay}
-              </a>
-              <a
-                href={`mailto:${COMPANY_INFO.email}`}
-                className="block text-sm text-white/50 hover:text-white transition-colors"
-              >
-                {COMPANY_INFO.email}
-              </a>
-            </div>
+            <a
+              href={`tel:${COMPANY_INFO.phone}`}
+              className="block w-full text-center border border-white/20 hover:border-white/40 text-white py-3 text-sm font-bold uppercase tracking-wider rounded-xl transition-colors"
+            >
+              {COMPANY_INFO.phoneDisplay}
+            </a>
+            <p className="text-center text-xs text-slate-500 pt-1">{COMPANY_INFO.email}</p>
           </div>
-
         </div>
       , document.body)}
     </header>
