@@ -19,7 +19,6 @@ export const COMPANY_INFO = {
   tiktokUrl: 'https://www.tiktok.com/@newroofingsolutions?is_from_webapp=1&sender_device=pc',
   linkedinUrl: 'https://www.linkedin.com/in/new-roofing-solutions-17b5243b4/?isSelfProfile=false',
   address: '78c Olifantsfontein Road, Glen Austin AH, Midrand',
-  deliveryText: 'We Deliver Nationwide',
 };
 
 export interface PromoProduct {
@@ -31,6 +30,7 @@ export interface PromoProduct {
   priceDetail: string;
   features: string[];
   tag?: string;
+  image?: string;
   specs?: { name: string; val: string }[];
 }
 
@@ -43,17 +43,12 @@ export const PROMO_PRODUCTS: PromoProduct[] = [
     price: 'R128.00',
     priceDetail: 'per meter (Excl. VAT)',
     tag: 'Promo Special',
-    features: [
-      'Durable & long lasting protection',
-      'Extra UV & weathering protection',
-      'Custom lengths fabricated to order',
-      'High-strength structural steel'
-    ],
+    image: '/images/chromodek-sheets.png',
+    features: [],
     specs: [
       { name: 'Profile Type', val: 'IBR / Corrugated' },
       { name: 'Thickness', val: '0.53mm' },
-      { name: 'Origin', val: 'Direct from Manufacturer' },
-      { name: 'Delivery', val: 'Nationwide' }
+      { name: 'Tax status', val: 'Excl. VAT' }
     ]
   },
   {
@@ -64,12 +59,8 @@ export const PROMO_PRODUCTS: PromoProduct[] = [
     price: 'R64.00',
     priceDetail: 'per meter (Excl. VAT)',
     tag: 'Unbeatable Value',
-    features: [
-      'High quality steel sheets',
-      'Boxed (IBR) or wave (Corrugated) profiles',
-      'Weather-resistant galvanized surface',
-      'Unbeatable factory-direct prices'
-    ],
+    image: '/images/ibr-040-sheets.jpg',
+    features: [],
     specs: [
       { name: 'Profile Options', val: 'IBR / Corrugated' },
       { name: 'Thickness', val: '0.40mm' },
@@ -84,12 +75,8 @@ export const PROMO_PRODUCTS: PromoProduct[] = [
     price: 'R50.75',
     priceDetail: 'per meter (Excl. VAT)',
     tag: 'Best Seller',
-    features: [
-      'Amazing cost-effective durability',
-      'Perfect for residential & commercial builds',
-      'High rust resistance and weather proofing',
-      'Custom lengths available'
-    ],
+    image: '/images/ibr-030-sheets.jpg',
+    features: [],
     specs: [
       { name: 'Profile Options', val: 'IBR / Corrugated' },
       { name: 'Thickness', val: '0.30mm' },
@@ -104,32 +91,24 @@ export const PROMO_PRODUCTS: PromoProduct[] = [
     price: 'R47.50',
     priceDetail: 'per meter (Excl. VAT)',
     tag: 'Budget Friendly',
-    features: [
-      'Wave profile galvanized sheeting',
-      'Lightweight and high structural strength',
-      'Direct from manufacturer pricing',
-      'Guaranteed quality you can see'
-    ],
+    image: '/images/corrugated-027-sheets.jpg',
+    features: [],
     specs: [
-      { name: 'Profile Type', val: 'Corrugated wave profile' },
+      { name: 'Profile Type', val: 'IBR / Corrugated' },
       { name: 'Thickness', val: '0.27mm' },
-      { name: 'Material', val: 'Galvanized high-grade steel' }
+      { name: 'Tax status', val: 'Excl. VAT' }
     ]
   },
   {
     id: 'promo-roofing-nails',
-    title: 'Premium NRS Roofing Nails / Wire Nails',
+    title: 'Wire Nails',
     profile: 'Accessories',
     thickness: '2-inch, 3-inch & 4-inch',
     price: 'R25.00',
     priceDetail: 'per pack (Excl. VAT)',
     tag: 'Essential Accessory',
-    features: [
-      'Available sizes: 2-inch, 3-inch & 4-inch',
-      'Strong, reliable, built to hold sheets tightly',
-      'Rust-resistant finish to prevent leaks at fixing points',
-      'Heavy-duty round wire design'
-    ],
+    image: '/images/wire-nails.jpg',
+    features: [],
     specs: [
       { name: 'Nail Sizes', val: "2-Inch, 3-Inch, 4-Inch" },
       { name: 'Price status', val: 'R25 (Excl. VAT)' }
@@ -594,7 +573,7 @@ export const FAQS_LIST = [
   },
   {
     q: 'Do you provide free roofing quotations?',
-    a: 'Yes! We provide 100% free site inspections, leak diagnostics, and comprehensive itemized quotes throughout all our service regions.'
+    a: 'Yes! We provide leak diagnostics, and comprehensive itemized quotes throughout all our service regions.'
   },
   {
     q: 'Do you handle emergency roof repairs?',

@@ -167,10 +167,10 @@ footer, #main-app-footer {
    ════════════════════════════════════════════ */
 @media (max-width: 767px) {
   #navbar-container { padding-left: 16px; padding-right: 16px; }
-  #navbar-desktop-layout { height: 64px !important; }
+  #navbar-desktop-layout { height: 60px !important; }
 
   /* Logo: flex-1 already handles centering between the two flanking icons */
-  #navbar-middle-logo img { height: 36px !important; }
+  #navbar-middle-logo img { height: 34px !important; }
 
   #mobile-phone-shortcut,
   #mobile-hamburger-trigger button {

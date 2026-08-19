@@ -154,7 +154,7 @@ export default function MaterialShowcase() {
               Factory Direct Pricing & Promotions
             </h2>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Scan our latest catalog specials. We fabricate premium custom-length sheets to order at our Midrand factory. <strong className="text-slate-900">{COMPANY_INFO.deliveryText}</strong>.
+              Scan our latest catalog specials. We fabricate premium custom-length sheets to order at our Midrand factory.
             </p>
 
             {/* Profile Filter Tabs */}
@@ -186,24 +186,38 @@ export default function MaterialShowcase() {
                 className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-md flex flex-col justify-between hover:shadow-xl hover:border-slate-300 transition-all duration-300"
               >
                 {/* Card Header (Light Slate Gray like image 2) */}
-                <div className="p-5 border-b border-slate-200 bg-slate-200/90">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#F96302] bg-white border border-orange-200 px-2.5 py-0.5 rounded shadow-sm">
-                      {prod.profile}
-                    </span>
-                    {prod.tag && (
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-white bg-[#B71510] px-2.5 py-0.5 rounded shadow-sm">
-                        {prod.tag}
+                <div className="p-5 border-b border-slate-200 bg-slate-200/90 flex flex-col justify-between min-h-[115px]">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#F96302] bg-white border border-orange-200 px-2.5 py-0.5 rounded shadow-sm">
+                        {prod.profile}
                       </span>
-                    )}
+                      {prod.tag && (
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-white bg-[#B71510] px-2.5 py-0.5 rounded shadow-sm">
+                          {prod.tag}
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="font-display font-black text-sm text-slate-900 uppercase tracking-wide">
+                      {prod.title}
+                    </h3>
                   </div>
-                  <h3 className="font-display font-black text-sm text-slate-900 uppercase tracking-wide">
-                    {prod.title}
-                  </h3>
                   <div className="text-xs text-slate-600 font-medium mt-1">
                     Thickness: <span className="text-slate-900 font-bold">{prod.thickness}</span>
                   </div>
                 </div>
+
+                {/* Product Image (shown when available) */}
+                {prod.image && (
+                  <div className="relative overflow-hidden" style={{ height: '160px' }}>
+                    <img
+                      src={prod.image}
+                      alt={prod.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  </div>
+                )}
 
                 {/* Card Body */}
                 <div className="p-5 flex-grow space-y-4 bg-white">

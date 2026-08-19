@@ -365,7 +365,7 @@ export default function App() {
                     </h2>
                     
                     <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                      New Roofing Solutions is a metal roofing and decking manufacturer that is <strong>100% black owned</strong>. We supply all types of roof sheets and deliver nationwide. Escorted by excellent quality, favourable price and good reputation, we are your choice.
+                      New Roofing Solutions is a roofing manufacturing company that is <strong>100% black owned</strong>. We supply all types of roof sheets and deliver nationwide. Escorted by excellent quality, favourable price and good reputation, we are your choice.
                     </p>
 
                     {/* Mission Statement Box */}
@@ -773,7 +773,7 @@ export default function App() {
                   Introduction
                 </h3>
                 <p className="font-['Inter',sans-serif] font-normal text-[16px] leading-[1.8] text-slate-800">
-                  New Roofing Solutions is a metal roofing and decking manufacturer that is <strong>100% black owned</strong>. We supply all types of roof sheets and deliver nationwide. Escorted by excellent quality, favourable price and good reputation, we are your choice.
+                  New Roofing Solutions is a roofing manufacturing company that is <strong>100% black owned</strong>. We supply all types of roof sheets and deliver nationwide. Escorted by excellent quality, favourable price and good reputation, we are your choice.
                 </p>
               </div>
               <div className="rounded-2xl overflow-hidden shadow-xl border border-slate-200 relative group" style={{height: '320px'}}>
@@ -1273,9 +1273,6 @@ export default function App() {
                       <div>
                         <span className="text-[10px] uppercase font-bold text-slate-500">Official Website</span>
                         <strong className="text-xs block text-slate-900 font-bold mt-1">{COMPANY_INFO.website}</strong>
-                        <p className="text-[11px] text-slate-600 leading-normal mt-1">
-                          Our portal is secure, SEO-optimized, and configured for rapid dispatch routing to Johannesburg, Pretoria, Midrand, and Durban.
-                        </p>
                       </div>
                     </div>
 

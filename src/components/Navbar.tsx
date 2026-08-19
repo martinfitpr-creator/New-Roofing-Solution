@@ -114,7 +114,7 @@ export default function Navbar({ currentTab, onNavigate, onOpenQuote }: NavbarPr
 
         {/* ── DESKTOP grid row (hidden on mobile, shown on md+) ── */}
         <div
-          className="hidden md:grid h-[68px] items-center"
+          className="hidden md:grid h-[60px] items-center"
           style={{ gridTemplateColumns: '1fr auto 1fr' }}
           id="navbar-desktop-layout"
         >
@@ -208,7 +208,7 @@ export default function Navbar({ currentTab, onNavigate, onOpenQuote }: NavbarPr
               <img
                 src="/images/nrs-main-logo.jpg"
                 alt="NRS New Roofing Solutions Logo"
-                className="h-10 w-auto"
+                className="h-9 w-auto"
               />
             </button>
           </div>
