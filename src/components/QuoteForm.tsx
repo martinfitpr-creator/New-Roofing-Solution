@@ -26,7 +26,7 @@ export default function QuoteForm({ preselectedService = '', onSuccess, compact 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
-  // Handle standard online form submission (sends to Netlify Forms + logs in localStorage)
+  // Handle online form submission (Compatible with Netlify Forms, Formspree, FormSubmit, Web3Forms, or any custom host)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -39,19 +39,41 @@ export default function QuoteForm({ preselectedService = '', onSuccess, compact 
     setIsSubmitting(true);
 
     try {
-      // 1. Submit asynchronously to Netlify Forms
-      await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({
-          'form-name': 'quote-request',
-          fullName,
-          email,
-          phone,
-          service,
-          message,
-        }),
-      });
+      const endpoint = (import.meta.env.VITE_FORM_ENDPOINT as string) || '/';
+
+      if (endpoint.startsWith('http')) {
+        // Universal external web host / form service (e.g. Formspree, Web3Forms, FormSubmit, custom API)
+        await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+            'form-name': 'quote-request',
+            fullName,
+            email,
+            phone,
+            service,
+            message,
+            _subject: `New Roofing Quote Request from ${fullName}`,
+          }),
+        });
+      } else {
+        // Native Netlify Forms or relative endpoint handler
+        await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: encode({
+            'form-name': 'quote-request',
+            fullName,
+            email,
+            phone,
+            service,
+            message,
+          }),
+        });
+      }
 
       // 2. Build local lead item backup
       const newLead: LeadSubmission = {
