@@ -1,7 +1,8 @@
 {
-  "name": "react-example",
+  "name": "new-roofing-solutions",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "High-performance JavaScript / React frontend web application for New Roofing Solutions.",
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",

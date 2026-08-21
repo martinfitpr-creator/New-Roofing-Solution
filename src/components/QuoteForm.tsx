@@ -9,6 +9,13 @@ interface QuoteFormProps {
   compact?: boolean;
 }
 
+// URL-encoding helper for Netlify AJAX submissions
+function encode(data: Record<string, string>) {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+}
+
 export default function QuoteForm({ preselectedService = '', onSuccess, compact = false }: QuoteFormProps) {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -16,10 +23,11 @@ export default function QuoteForm({ preselectedService = '', onSuccess, compact 
   const [service, setService] = useState(preselectedService || SERVICES[0].title);
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
-  // Handle standard online form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  // Handle standard online form submission (sends to Netlify Forms + logs in localStorage)
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -28,8 +36,24 @@ export default function QuoteForm({ preselectedService = '', onSuccess, compact 
       return;
     }
 
+    setIsSubmitting(true);
+
     try {
-      // Build lead item
+      // 1. Submit asynchronously to Netlify Forms
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({
+          'form-name': 'quote-request',
+          fullName,
+          email,
+          phone,
+          service,
+          message,
+        }),
+      });
+
+      // 2. Build local lead item backup
       const newLead: LeadSubmission = {
         id: 'lead-' + Date.now(),
         fullName,
@@ -42,12 +66,12 @@ export default function QuoteForm({ preselectedService = '', onSuccess, compact 
           month: 'long',
           day: 'numeric',
           hour: '2-digit',
-          minute: '2-digit'
+          minute: '2-digit',
         }),
-        status: 'new'
+        status: 'new',
       };
 
-      // Store in localStorage for lead monitoring
+      // Store in localStorage for admin lead monitoring
       const existingLeadsStr = localStorage.getItem('new_roofing_leads') || '[]';
       const existingLeads = JSON.parse(existingLeadsStr);
       existingLeads.unshift(newLead);
@@ -58,7 +82,9 @@ export default function QuoteForm({ preselectedService = '', onSuccess, compact 
         setTimeout(() => onSuccess(), 2000);
       }
     } catch (err) {
-      setError('Something went wrong. Please try again.');
+      setError('Something went wrong submitting your enquiry. Please try again or use WhatsApp.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -143,7 +169,23 @@ _Sent from www.newroofingsolutions.co.za_`;
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`${compact ? 'space-y-3 p-1' : 'space-y-4 p-6 bg-white rounded-xl shadow-md border border-slate-200'}`} id="roofing-quote-form">
+    <form
+      onSubmit={handleSubmit}
+      name="quote-request"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      className={`${compact ? 'space-y-3 p-1' : 'space-y-4 p-6 bg-white rounded-xl shadow-md border border-slate-200'}`}
+      id="roofing-quote-form"
+    >
+      {/* Hidden input required by Netlify Forms */}
+      <input type="hidden" name="form-name" value="quote-request" />
+      <p className="hidden">
+        <label>
+          Don’t fill this out if you're human: <input name="bot-field" />
+        </label>
+      </p>
+
       {!compact && (
         <div className="border-b border-slate-200 pb-4 mb-4">
           <h3 className="text-lg font-black uppercase text-slate-900 flex items-center gap-2">
@@ -176,6 +218,7 @@ _Sent from www.newroofingsolutions.co.za_`;
           <label className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Full Name *</label>
           <input
             type="text"
+            name="fullName"
             required
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
@@ -189,6 +232,7 @@ _Sent from www.newroofingsolutions.co.za_`;
           <label className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Phone Number *</label>
           <input
             type="tel"
+            name="phone"
             required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
@@ -204,6 +248,7 @@ _Sent from www.newroofingsolutions.co.za_`;
           <label className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Email Address *</label>
           <input
             type="email"
+            name="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -216,6 +261,7 @@ _Sent from www.newroofingsolutions.co.za_`;
         <div className="flex flex-col space-y-1">
           <label className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Service Required</label>
           <select
+            name="service"
             value={service}
             onChange={(e) => setService(e.target.value)}
             className={`rounded-lg bg-slate-50 border border-slate-300 text-slate-900 px-3 text-sm focus:bg-white focus:border-[#B71510] focus:ring-1 focus:ring-[#B71510] focus:outline-none cursor-pointer transition-all ${compact ? 'py-1.5' : 'py-2'}`}
@@ -233,6 +279,7 @@ _Sent from www.newroofingsolutions.co.za_`;
       <div className="flex flex-col space-y-1">
         <label className="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Tell us about your roofing requirements *</label>
         <textarea
+          name="message"
           required
           rows={compact ? 2 : 3}
           value={message}
@@ -248,11 +295,12 @@ _Sent from www.newroofingsolutions.co.za_`;
         {/* Primary CTA Red button - Submit via email/online */}
         <button
           type="submit"
-          className={`flex-1 rounded-lg bg-[#B71510] text-center text-xs font-bold uppercase tracking-wider text-white shadow-md hover:bg-[#9c120d] active:scale-95 transition-all flex items-center justify-center gap-2 ${compact ? 'py-2.5 px-3' : 'py-3 px-4'}`}
+          disabled={isSubmitting}
+          className={`flex-1 rounded-lg bg-[#B71510] text-center text-xs font-bold uppercase tracking-wider text-white shadow-md hover:bg-[#9c120d] active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 ${compact ? 'py-2.5 px-3' : 'py-3 px-4'}`}
           id="btn-quote-submit-online"
         >
-          <Send className="h-3.5 w-3.5" />
-          Send Online Enquiry
+          <Send className={`h-3.5 w-3.5 ${isSubmitting ? 'animate-spin' : ''}`} />
+          {isSubmitting ? 'Sending Enquiry...' : 'Send Online Enquiry'}
         </button>
 
         {/* Secondary CTA Green button - Instant WhatsApp request */}

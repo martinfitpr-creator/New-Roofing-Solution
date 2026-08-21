@@ -1,6 +1,5 @@
 {
   "name": "New Roofing Solution",
   "description": "Premium roofing, waterproofing, and repair solutions in South Africa. Residential, commercial, and industrial roofing services with lasting protection.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "requestFramePermissions": []
 }
