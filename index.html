@@ -25,5 +25,28 @@
 
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Suppress host badges / preview drawers -->
+    <script>
+      (function() {
+        const removeBadges = () => {
+          const selectors = [
+            'netlify-drawer',
+            '#netlify-drawer',
+            '.netlify-drawer',
+            '[data-netlify-drawer]',
+            '[data-netlify-badge]',
+            'iframe[src*="netlify"]',
+            'iframe[id*="netlify"]'
+          ];
+          selectors.forEach(sel => {
+            document.querySelectorAll(sel).forEach(el => el.remove());
+          });
+        };
+        document.addEventListener('DOMContentLoaded', removeBadges);
+        const observer = new MutationObserver(removeBadges);
+        observer.observe(document.documentElement, { childList: true, subtree: true });
+      })();
+    </script>
   </body>
 </html>

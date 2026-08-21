@@ -362,3 +362,29 @@ footer, #main-app-footer {
 button, a {
   transition: color .15s ease, background-color .15s ease, transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
+
+/* ════════════════════════════════════════════
+   HIDE HOST BADGES / NETLIFY DRAWER
+   ════════════════════════════════════════════ */
+netlify-drawer,
+#netlify-drawer,
+.netlify-drawer,
+[data-netlify-drawer],
+[data-netlify-badge],
+iframe[src*="netlify"],
+iframe[id*="netlify"],
+div[class*="netlify-"],
+div[id*="netlify-drawer"],
+button[aria-label*="Netlify"],
+.netlify-feedback-button {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+  z-index: -9999 !important;
+}
+
