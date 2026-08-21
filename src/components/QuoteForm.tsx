@@ -51,6 +51,7 @@ export default function QuoteForm({ preselectedService = '', onSuccess, compact 
           },
           body: JSON.stringify({
             'form-name': 'quote-request',
+            name: fullName,
             fullName,
             email,
             phone,
@@ -66,6 +67,7 @@ export default function QuoteForm({ preselectedService = '', onSuccess, compact 
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: encode({
             'form-name': 'quote-request',
+            name: fullName,
             fullName,
             email,
             phone,

@@ -6,14 +6,25 @@
   </head>
   <body>
     <!-- Hidden static form fallback to guarantee Netlify build scanner indexes this form -->
-    <form name="quote-request" netlify data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <form
+      name="quote-request"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
       <input type="hidden" name="form-name" value="quote-request" />
-      <input type="text" name="bot-field" />
-      <input type="text" name="fullName" />
-      <input type="email" name="email" />
-      <input type="tel" name="phone" />
-      <input type="text" name="service" />
+      <input name="bot-field" type="text" />
+
+      <input name="name" type="text" required />
+      <input name="fullName" type="text" />
+      <input name="email" type="email" required />
+      <input name="phone" type="tel" />
+      <input name="service" type="text" />
+      
       <textarea name="message"></textarea>
+
+      <button type="submit">Get a Quote</button>
     </form>
   </body>
 </html>
